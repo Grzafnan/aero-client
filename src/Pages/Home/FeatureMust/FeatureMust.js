@@ -12,26 +12,31 @@ const FeatureMust = () => {
   const services = [
     {
       _id: 1,
+      title: 'Age',
       description: 'Car’s value will drop as it ages',
       icon: car
     },
     {
       _id: 2,
+      title: 'Mileage',
       description: 'Fewer Miles means more money',
       icon: mileage
     },
     {
       _id: 3,
+      title: 'Brand',
       description: 'Lexus, Porsche, Audi, and Benz',
       icon: brand
     },
     {
       _id: 4,
+      title: 'Exterior and Interior',
       description: 'Deep clean your interior',
       icon: exterior
     },
     {
       _id: 5,
+      title: 'History and Registration',
       description: 'Better prices',
       icon: price
     }
@@ -39,7 +44,7 @@ const FeatureMust = () => {
 
   return (
     <>
-      <div className="text-center mt-32">
+      <div className="text-center mt-32 mb-10">
         <h1 className="font-semibold text-2xl md:text-3xl text-secondary">Factors Affecting Your Car's Value When Selling</h1>
         <p className="text-neutral px-8 m-5 lg:w-3/4 mx-auto ">With the right information, you can sell your used car for its true value. Below are factors that affect your car’s resale value.
           If you’re looking for the best way to sell a car ? We are still considered to be basically the gold standard when it comes to auto sales online. The reason for this is because their listings are so widely syndicated that their inventory is humongous.

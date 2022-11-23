@@ -5,12 +5,12 @@ import { GiForwardField, GiGamepadCross, GiGasPump } from "react-icons/gi";
 const Statics = () => {
   return (
     <section className="text-gray-600 body-font">
-      <div className="container px-5 py-24 mx-auto">
-        <div className="flex flex-col text-center w-full mb-20">
+      <div className="px-5 py-24 mx-auto">
+        <div className="flex flex-col text-center w-full mb-14">
           <h1 className="md:text-3xl text-2xl font-medium title-font mb-4 text-secondary">
-            Master Cleanse Reliac Heirloom
+            Control Your Car-Buying Experience
           </h1>
-          <p className="lg:w-3/4 mx-auto text-justify text-neutral">
+          <p className="lg:w-3/4 px-8 mx-auto text-justify text-neutral">
             Show off your personality as a business with a website that speaks well to your brand. Of course, customer experience is essential when building your web presence. Dodge is another awesome car dealer website that you should check. It has a stunning, asymmetrical design that looks unique and creative. Specifically, the hero header impresses visitors with a cool slider combined with the striking design of CTAs, attractive images and engaging promotions.
           </p>
         </div>
