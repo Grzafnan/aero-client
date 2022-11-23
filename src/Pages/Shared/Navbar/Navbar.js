@@ -30,14 +30,12 @@ const Navbar = () => {
       <li className=' py-1 px-4 lg:px-0'>
         <Link to="/login" className='font-semibold'>Log in</Link>
       </li>
-
-
     }
   </>
 
 
   return (
-    <div className="navbar bg-base-100 flex justify-between">
+    <div className="navbar sticky top-0 z-40 border-b bg-slate-50/60 backdrop-blur-2xl transition-colors duration-500 dark:bg-[#0B1120]/80 flex justify-between ">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">

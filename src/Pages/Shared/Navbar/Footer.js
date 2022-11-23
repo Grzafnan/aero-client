@@ -37,7 +37,7 @@ const Footer = () => {
           <div className="flex items-center gap-x-8 mt-6">
             <div className="cursor-pointer">
               <svg
-                className="fill-current text-gray900 hover:text-white"
+                className="fill-current transition-all duration-500 ease-in-out text-gray-900 hover:text-white"
                 width="22"
                 height="22"
                 viewBox="0 0 22 22"
@@ -54,7 +54,7 @@ const Footer = () => {
             </div>
             <div className="cursor-pointer">
               <svg
-                className="fill-current text-gray-800 hover:text-gray-100"
+                className="fill-current transition-all duration-500 ease-in-out text-gray-900 hover:text-gray-100"
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
@@ -77,7 +77,7 @@ const Footer = () => {
             </div>
             <div className="cursor-pointer">
               <svg
-                className="fill-current text-gray-800 hover:text-gray-100"
+                className="fill-current text-gray-900 hover:text-gray-100 transition-all duration-500 ease-in-out "
                 width="24"
                 height="25"
                 viewBox="0 0 24 25"
