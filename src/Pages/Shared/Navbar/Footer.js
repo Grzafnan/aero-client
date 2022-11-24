@@ -20,7 +20,7 @@ const Footer = () => {
             </h2> */}
             <img src={logo} className='w-16' alt="Aero" title='Home' />
           </div>
-          <div className="flex flex-wrap sm:gap-10 gap-8 items-center justify-center mt-8">
+          <div className="flex flex-wrap sm:gap-10 gap-8 items-center justify-center mt-8 font-normal">
             <p className="hover:text-white transition-all duration-500 ease-in-out text-base cursor-pointer leading-4 text-gray-800">
               About
             </p>
@@ -94,7 +94,7 @@ const Footer = () => {
           <div className="flex items-center mt-6">
             <img src={logo} className='w-16' alt="Aero" title='Home' />
             <div className="border-l border-gray-800 pl-2 ml-2">
-              <p className="text-base leading-4 text-gray-800">
+              <p className="text-base font-normal leading-4 text-gray-800">
                 Copyright © {new Date().getFullYear()} - All right reserved
               </p>
             </div>

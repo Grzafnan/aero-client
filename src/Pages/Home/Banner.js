@@ -43,7 +43,7 @@ const Banner = () => {
           <div className=" flex justify-center lg:flex-none">
             <img
               src={banner}
-              className="object-fill h-80 w-99 rounded-lg shadow-2xl lg:hover:scale-105 transition-all duration-500"
+              className="object-fill h-80 lg:h-96 w-full rounded-lg shadow-2xl lg:hover:scale-105 transition-all duration-500"
               alt="banner"
             />
           </div>

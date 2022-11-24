@@ -13,11 +13,11 @@ const Navbar = () => {
   }
 
   const menuItems = <>
-    <li className=' py-1 px-4 lg:px-0'><Link to="/home" className='font-semibold'>Home</Link></li>
-    <li className='lg:mx-1 py-1 px-4 lg:px-0'><Link to="/appointment" className='font-semibold'>Appointment</Link></li>
-    <li className='lg:mx-1 py-1 px-4 lg:px-0'><Link to="/dashboard" className='font-semibold'>Dashboard</Link></li>
-    <li className='lg:mx-1 py-1 px-4 lg:px-0'><Link to="/reviews" className='font-semibold'>Reviews</Link></li>
-    <li className=' py-1 px-4 lg:px-0'><Link to="/about" className='font-semibold'>About</Link></li>
+    <li className=' py-1 px-4 lg:px-0'><Link to="/home" className='font-medium'>Home</Link></li>
+    <li className='lg:mx-1 py-1 px-4 lg:px-0'><Link to="/appointment" className='font-medium'>Appointment</Link></li>
+    <li className='lg:mx-1 py-1 px-4 lg:px-0'><Link to="/dashboard" className='font-medium'>Dashboard</Link></li>
+    <li className='lg:mx-1 py-1 px-4 lg:px-0'><Link to="/reviews" className='font-medium'>Reviews</Link></li>
+    <li className=' py-1 px-4 lg:px-0'><Link to="/about" className='font-medium'>About</Link></li>
 
     {user?.uid ?
       <>
@@ -33,9 +33,8 @@ const Navbar = () => {
     }
   </>
 
-
   return (
-    <div className="navbar sticky top-0 z-40 border-b bg-slate-50/60 backdrop-blur-2xl transition-colors duration-500 dark:bg-[#0B1120]/80 flex justify-between ">
+    <div className="navbar sticky top-0 z-40 bg-slate-50/60 backdrop-blur-2xl transition-colors duration-500 dark:bg-[#0B1120]/80 flex justify-between ">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
