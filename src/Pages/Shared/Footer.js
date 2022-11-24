@@ -1,6 +1,6 @@
 import React from 'react';
-import footerwave from '../../../assets/footer-wave.svg'
-import logo from '../../../assets/logo.png'
+import footerwave from '../../assets/footer-wave.svg'
+import logo from '../../assets/logo.png'
 
 const Footer = () => {
   return (

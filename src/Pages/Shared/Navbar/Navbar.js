@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import logo from '../../../assets/logo.png'
@@ -6,24 +6,19 @@ import logo from '../../../assets/logo.png'
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext)
 
-  const handleLogOut = () => {
-    logOut()
-      .then(() => { })
-      .catch(err => console.log(err));
-  }
 
   const menuItems = <>
     <li className=' py-1 px-4 lg:px-0'><Link to="/home" className='font-medium'>Home</Link></li>
-    <li className='lg:mx-1 py-1 px-4 lg:px-0'><Link to="/appointment" className='font-medium'>Appointment</Link></li>
-    <li className='lg:mx-1 py-1 px-4 lg:px-0'><Link to="/dashboard" className='font-medium'>Dashboard</Link></li>
-    <li className='lg:mx-1 py-1 px-4 lg:px-0'><Link to="/reviews" className='font-medium'>Reviews</Link></li>
-    <li className=' py-1 px-4 lg:px-0'><Link to="/about" className='font-medium'>About</Link></li>
-
+    <li className='lg:mx-1 py-1 px-4 lg:px-0'><Link to="/appointment" className='font-medium'>Products</Link></li>
+    <li className='lg:mx-1 py-1 px-4 lg:px-0'><Link to="/blogs" className='font-medium'>Blogs</Link></li>
     {user?.uid ?
       <>
-        <li><Link to="/dashboard">Dashboard</Link></li>
-        <li>
-          <button onClick={handleLogOut}>Sign out</button>
+        <li className='lg:mx-1 py-1 px-4 lg:px-0'><Link to="/dashboard" className='font-medium'>Dashboard</Link></li>
+        <li className=' py-1 px-4 lg:px-0'>
+          <button
+            className='font-semibold'
+            onClick={logOut}
+          >Sign out</button>
         </li>
       </>
       :

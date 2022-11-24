@@ -29,6 +29,7 @@ const SignUp = () => {
         update(data.name)
         verifyEmail();
         savedUserDB(data.name, data.email, data.userType)
+        navigate(from, { replace: true })
         // ...
       })
       .catch((error) => {

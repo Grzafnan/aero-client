@@ -10,7 +10,7 @@ export const savedUserDB = (name, email, role) => {
     role,
   }
 
-  axios.post(`${process.env.REACT_APP_API_URL}users`, user)
+  axios.post(`${process.env.REACT_APP_API_URL}/users`, user)
     .then(res => {
       if (res?.data?.data?.acknowledged) {
         console.log(res);
