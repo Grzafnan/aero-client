@@ -9,11 +9,12 @@ const Navbar = () => {
 
   const menuItems = <>
     <li className=' py-1 px-4 lg:px-0'><Link to="/home" className='font-medium'>Home</Link></li>
-    <li className='lg:mx-1 py-1 px-4 lg:px-0'><Link to="/appointment" className='font-medium'>Products</Link></li>
+    <li className='lg:mx-1 py-1 px-4 lg:px-0'><Link to="/categories" className='font-medium'>Categories</Link></li>
+    <li className='lg:mx-1 py-1 px-4 lg:px-0'><Link to="/blogs" className='font-medium'>Blogs</Link></li>
     <li className='lg:mx-1 py-1 px-4 lg:px-0'><Link to="/blogs" className='font-medium'>Blogs</Link></li>
     {user?.uid ?
       <>
-        <li className='lg:mx-1 py-1 px-4 lg:px-0'><Link to="/dashboard" className='font-medium'>Dashboard</Link></li>
+
         <li className=' py-1 px-4 lg:px-0'>
           <button
             className='font-semibold'

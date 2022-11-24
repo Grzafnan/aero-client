@@ -1,0 +1,15 @@
+[
+  {
+    "categories_id": 1,
+    "brand": "tesla",
+    "name": "Model 3",
+    "seller_name": "Mahabub Alam",
+    "verification": "verified",
+    "original_price": "$62,990",
+    "resale_price": "$40,000",
+    "years_of_use": "1.5 years",
+    "location": "Chicago",
+    "post_time": "7:11 p.m",
+    "img": "https://i.ibb.co/3MymF4Z/model-3.jpg"
+  }
+]
