@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
-import { setAuthToken } from '../../api/auth';
+import { savedUserDB } from '../../api/auth';
 
 const SignUp = () => {
   const { createUser, verify, updateUserProfile, signInWithGoogle, setLoading } = useContext(AuthContext);
@@ -28,7 +28,7 @@ const SignUp = () => {
         console.log(user);
         update(data.name)
         verifyEmail();
-        // setAuthToken(user)
+        savedUserDB(data.name, data.email, data.userType)
         // ...
       })
       .catch((error) => {
@@ -63,8 +63,10 @@ const SignUp = () => {
 
   const handleGoogleSignin = () => {
     signInWithGoogle(googleProvider).then(result => {
-      console.log(result.user)
-      // setAuthToken(result.user)
+      const user = result.user;
+      console.log(user)
+      const role = 'Seller';
+      savedUserDB(user?.displayName, user?.email, role)
       setLoading(false)
       navigate(from, { replace: true })
       toast.success('Login successful')

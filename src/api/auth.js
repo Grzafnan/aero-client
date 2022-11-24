@@ -1,20 +1,23 @@
-export const setAuthToken = user => {
-  const currentUser = {
-    email: user.email,
+import axios from 'axios';
+import toast from 'react-hot-toast';
+
+//   Save user in db & get token
+export const savedUserDB = (name, email, role) => {
+
+  const user = {
+    name,
+    email,
+    role,
   }
 
-  //   Save user in db & get token
-  fetch(`${process.env.REACT_APP_API_URL}/user/${user?.email}`, {
-    method: 'PUT',
-    headers: {
-      'content-type': 'application/json',
-    },
-    body: JSON.stringify(currentUser),
-  })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      //Save token in LocalStorage
-      localStorage.setItem('aero-token', data.token)
+  axios.post(`${process.env.REACT_APP_API_URL}users`, user)
+    .then(res => {
+      if (res?.data?.data?.acknowledged) {
+        console.log(res);
+        // localStorage.setItem('Aero-Token')
+      }
+    }).catch(err => {
+      console.log(err);
     })
 }
+
