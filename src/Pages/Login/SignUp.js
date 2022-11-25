@@ -26,9 +26,9 @@ const SignUp = () => {
         // Signed in 
         const user = userCredential.user;
         console.log(user);
+        savedUserDB(data.name, data.email, data.userType)
         update(data.name)
         verifyEmail();
-        savedUserDB(data.name, data.email, data.userType)
         navigate(from, { replace: true })
         // ...
       })

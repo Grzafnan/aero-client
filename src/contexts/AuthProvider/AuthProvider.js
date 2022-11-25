@@ -45,10 +45,10 @@ const AuthProvider = ({ children }) => {
 
   const logOut = () => {
     setLoading(true)
-    return signOut(auth)
+    signOut(auth)
       .then(() => {
         // Sign-out successful.
-        localStorage.removeItem('AccessToken')
+        localStorage.removeItem('Aero-Token')
         toast.success('Log-out successful');
       }).catch((error) => {
         // An error happened.
