@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PrimaryButton from '../../../Components/PrimaryButton/PrimaryButton';
 
 const CategoryCard = ({ category }) => {
 
@@ -15,9 +16,9 @@ const CategoryCard = ({ category }) => {
           <h2 className="card-title">
             {title}
           </h2>
-          <p className='text-justify'>
+          <p className='text-justify text-[15px]'>
             {
-              description?.length > 100 ? description.slice(0, 100) + "..." : description
+              description?.length > 110 ? description.slice(0, 110) + "..." : description
             }
           </p>
           <div className="card-actions justify-center mt-1 w-full">
@@ -25,13 +26,16 @@ const CategoryCard = ({ category }) => {
               to={`/category/${categories_id}`}
               className="w-full"
             >
-              <button className="h-10 text-white rounded-lg w-full btn-primary">
+              {/* <button className="h-10 text-white rounded-lg w-full btn-primary">
                 SEE MORE
-              </button>
+              </button> */}
+
+              <PrimaryButton>SEE MORE</PrimaryButton>
             </Link>
           </div>
         </div>
       </div >
+
     </>
   );
 };

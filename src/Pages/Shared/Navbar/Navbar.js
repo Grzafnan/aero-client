@@ -9,16 +9,30 @@ const Navbar = () => {
 
 
   const menuItems = <>
-    <li className='py-1 px-4 lg:px-0'><Link to="/home" className='font-medium'>Home</Link></li>
-    <li className='lg:mx-1 py-1 px-4 lg:px-0'><Link to="/categories" className='font-medium'>Categories</Link></li>
-    <li className='lg:mx-1 py-1 px-4 lg:px-0'><Link to="/blogs" className='font-medium'>Blogs</Link></li>
-    <li className='lg:mx-1 py-1 px-4 lg:px-0'><Link to="/dashboard" className='font-medium'>Dashboard</Link></li>
+    <li className='py-1 px-4 lg:px-0'>
+      <NavLink to="/home" className={({ isActive }) =>
+        isActive ? 'font-medium text-secondary' : 'font-medium'
+      }>Home</NavLink>
+    </li>
+    <li className='lg:mx-1 py-1 px-4 lg:px-0'><NavLink to="/categories" className={({ isActive }) =>
+      isActive ? 'font-medium text-secondary' : 'font-medium'
+    }>Categories</NavLink></li>
+    <li className='lg:mx-1 py-1 px-4 lg:px-0'><NavLink to="/blogs" className={({ isActive }) =>
+      isActive ? 'font-medium text-secondary' : 'font-medium'
+    }>Blogs</NavLink></li>
+    <li className='lg:mx-1 py-1 px-4 lg:px-0'>
+      <NavLink to="/dashboard" className={({ isActive }) =>
+        isActive ? 'font-medium text-secondary' : 'font-medium'
+      }>
+        Dashboard
+      </NavLink>
+    </li>
     {user?.uid ?
       <>
 
         <li className='py-3 px-4 lg:px-0 nav-li'>
           <button
-            className='font-semibold text-white lg:py-[6px] w-full lg:w-28 rounded-md bg-secondary transition-all hover:bg-primary ease-in-out duration-300 text-center inline-block'
+            className='font-semibold text-white lg:py-[7px] w-full lg:w-28 rounded-md bg-secondary transition-all hover:bg-primary ease-in-out duration-300 text-center inline-block'
             onClick={logOut}
           >Sign out</button>
         </li>

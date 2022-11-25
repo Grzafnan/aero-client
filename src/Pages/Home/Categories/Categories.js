@@ -17,7 +17,7 @@ const Categories = () => {
       .catch(err => console.error(err))
   })
 
-  console.log(categories);
+  // console.log(categories);
 
   if (isLoading) {
     return <Spinner />
