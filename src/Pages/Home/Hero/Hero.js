@@ -2,7 +2,7 @@ import React from 'react';
 
 const Hero = () => {
   return (
-    <div className=" -mt-28 lg:-mt-40 ">
+    <div className=" -mt-28 lg:-mt-40 font-[Poppins] text-gray-900">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto px-4 pt-32">
         <div className="flex justify-center items-center gap-6 call_to_action">
           <div>

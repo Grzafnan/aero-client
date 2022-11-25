@@ -3,6 +3,11 @@ module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
+  fontFamily: {
+    Poppins: ['Poppins', 'sans-serif'],
+    Montserrat: ['Montserrat', 'sans-serif'],
+    Raleway: ['Raleway', 'sans-serif'],
+  },
   daisyui: {
     themes: [
       {

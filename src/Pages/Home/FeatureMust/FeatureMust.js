@@ -44,13 +44,13 @@ const FeatureMust = () => {
 
   return (
     <>
-      <div className="text-center mt-32 mb-10">
-        <h1 className="font-semibold text-2xl md:text-3xl text-secondary">Factors Affecting Your Car's Value When Selling</h1>
+      <div className="text-center mt-32 mb-10 font-[Poppins]">
+        <h1 className="font-semibold text-2xl md:text-3xl">Factors Affecting Your Car's Value When Selling</h1>
         <p className="text-neutral px-8 m-5 lg:w-3/4 mx-auto ">With the right information, you can sell your used car for its true value. Below are factors that affect your car’s resale value.
           If you’re looking for the best way to sell a car ? We are still considered to be basically the gold standard when it comes to auto sales online. The reason for this is because their listings are so widely syndicated that their inventory is humongous.
         </p>
       </div>
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 justify-items-center">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 justify-items-center font-[Poppins]">
         {
           services.map(service => <FeatureMustData key={service._id} service={service} />)
         }

@@ -7,7 +7,7 @@ const CategoryCard = ({ category }) => {
 
   return (
     <>
-      <div className="card bg-base-100 shadow">
+      <div className="card bg-base-100 shadow font-[Poppins]">
         <figure>
           <img src={img} className='h-60 w-full' alt={title} />
         </figure>
@@ -17,7 +17,7 @@ const CategoryCard = ({ category }) => {
           </h2>
           <p className='text-justify'>
             {
-              description?.length > 120 ? description.slice(0, 120) + "..." : description
+              description?.length > 100 ? description.slice(0, 100) + "..." : description
             }
           </p>
           <div className="card-actions justify-center mt-1 w-full">

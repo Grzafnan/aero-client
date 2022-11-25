@@ -15,7 +15,7 @@ const Banner = () => {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 container xl:max-w-7xl mx-auto px-4 py-16 lg:px-8 lg:py-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 container xl:max-w-7xl mx-auto px-4 py-16 lg:px-8 lg:py-32 font-[Poppins]">
           <div className="flex items-center text-center lg:text-left">
             <div className="space-y-10">
               <div>
@@ -25,7 +25,7 @@ const Banner = () => {
                 <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
                   Grow your business <span className="text-secondary">now</span>!
                 </h2>
-                <h3 className="text-lg md:text-xl md:leading-relaxed font-medium text-gray-600">
+                <h3 className="text-base md:text-xl md:leading-normal font-medium text-gray-600">
                   Inspiring results from day one without the pain. Get your own
                   custom dashboard and start building amazing services.
                 </h3>

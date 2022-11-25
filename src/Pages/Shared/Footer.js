@@ -12,7 +12,7 @@ const Footer = () => {
       }}
       className="p-12 md:p-10"
     >
-      <div className="mx-auto container pt-20 md:pt-0 lg:pt-16">
+      <div className="mx-auto container pt-20 md:pt-0 lg:pt-16 font-[Poppins]">
         <div className="flex flex-col items-center justify-center">
           <div>
             {/* <h2 className="font-extrabold text-gray-900 font-mono text-3xl">
@@ -20,17 +20,17 @@ const Footer = () => {
             </h2> */}
             <img src={logo} className='w-16' alt="Aero" title='Home' />
           </div>
-          <div className="flex flex-wrap sm:gap-10 gap-8 items-center justify-center mt-8 font-normal">
-            <p className="hover:text-white transition-all duration-500 ease-in-out text-base cursor-pointer leading-4 text-gray-800">
+          <div className="flex flex-wrap sm:gap-10 gap-8 items-center justify-center mt-8">
+            <p className="hover:text-white transition-all duration-500 ease-in-out font-medium cursor-pointer leading-4 text-gray-900">
               About
             </p>
-            <p className="hover:text-white transition-all duration-500 ease-in-out text-base cursor-pointer leading-4 text-gray-900">
+            <p className="hover:text-white transition-all duration-500 ease-in-out font-medium  cursor-pointer leading-4 text-gray-900">
               Contact us
             </p>
-            <p className="hover:text-white transition-all duration-500 ease-in-out text-base cursor-pointer leading-4 text-gray-900">
+            <p className="hover:text-white transition-all duration-500 ease-in-out font-medium  cursor-pointer leading-4 text-gray-900">
               Terms of Service
             </p>
-            <p className="hover:text-white transition-all duration-500 ease-in-out text-base cursor-pointer leading-4 text-gray-900">
+            <p className="hover:text-white transition-all duration-500 ease-in-out font-medium  cursor-pointer leading-4 text-gray-900">
               Privacy Policy
             </p>
           </div>
@@ -93,8 +93,8 @@ const Footer = () => {
           </div>
           <div className="flex items-center mt-6">
             <img src={logo} className='w-16' alt="Aero" title='Home' />
-            <div className="border-l border-gray-800 pl-2 ml-2">
-              <p className="text-base font-normal leading-4 text-gray-800">
+            <div className="border-l border-gray-900 pl-2 ml-2">
+              <p className=" leading-4 font-medium text-gray-900">
                 Copyright © {new Date().getFullYear()} - All right reserved
               </p>
             </div>

@@ -2,41 +2,46 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import logo from '../../../assets/logo.png'
+import './Navbar.css'
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext)
 
 
   const menuItems = <>
-    <li className=' py-1 px-4 lg:px-0'><Link to="/home" className='font-medium'>Home</Link></li>
+    <li className='py-1 px-4 lg:px-0'><Link to="/home" className='font-medium'>Home</Link></li>
     <li className='lg:mx-1 py-1 px-4 lg:px-0'><Link to="/categories" className='font-medium'>Categories</Link></li>
     <li className='lg:mx-1 py-1 px-4 lg:px-0'><Link to="/blogs" className='font-medium'>Blogs</Link></li>
-    <li className='lg:mx-1 py-1 px-4 lg:px-0'><Link to="/blogs" className='font-medium'>Blogs</Link></li>
+    <li className='lg:mx-1 py-1 px-4 lg:px-0'><Link to="/dashboard" className='font-medium'>Dashboard</Link></li>
     {user?.uid ?
       <>
 
-        <li className=' py-1 px-4 lg:px-0'>
+        <li className='py-3 px-4 lg:px-0 nav-li'>
           <button
-            className='font-semibold'
+            className='font-semibold text-white lg:py-[6px] w-full lg:w-28 rounded-md bg-secondary transition-all hover:bg-primary ease-in-out duration-300 text-center inline-block'
             onClick={logOut}
           >Sign out</button>
         </li>
       </>
       :
-      <li className=' py-1 px-4 lg:px-0'>
-        <Link to="/login" className='font-semibold'>Log in</Link>
+      <li className=' py-1 px-0 nav-li'>
+        <Link to="/login" className='font-semibold '>
+          <button className='text-white py-[6px] btn-secondary w-full lg:w-20 rounded-md transition-all ease-in-out duration-300'>
+            Log in
+          </button>
+        </Link>
       </li>
     }
   </>
 
   return (
-    <div className="navbar sticky top-0 z-40 bg-slate-50/60 backdrop-blur-2xl transition-colors duration-500 dark:bg-[#0B1120]/80 flex justify-between ">
-      <div className="navbar-start">
+    <div className="navbar sticky top-0 z-40 bg-slate-50/60 backdrop-blur-2xl transition-colors duration-500 dark:bg-[#0B1120]/80 flex justify-between font-[Poppins]">
+      <div className="navbar-start ">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
           </label>
-          <ul tabIndex={1} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+          <ul tabIndex={1} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 nav">
             {menuItems}
           </ul>
         </div>
@@ -45,7 +50,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal p-0">
+        <ul className="menu menu-horizontal p-0 nav">
           {menuItems}
         </ul>
       </div>

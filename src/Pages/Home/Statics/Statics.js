@@ -4,10 +4,10 @@ import { GiForwardField, GiGamepadCross, GiGasPump } from "react-icons/gi";
 
 const Statics = () => {
   return (
-    <section className="text-gray-600 body-font">
+    <section className="text-gray-900 font-[Poppins]">
       <div className="px-5 py-24 mx-auto">
         <div className="flex flex-col text-center w-full mb-14">
-          <h1 className="md:text-3xl text-2xl font-medium title-font mb-4 text-secondary">
+          <h1 className="md:text-3xl text-2xl font-semibold mb-4">
             Control Your Car-Buying Experience
           </h1>
           <p className="lg:w-3/4 px-8 mx-auto text-justify text-neutral">
