@@ -51,7 +51,7 @@ const CategoryServicesCard = ({ service, setIsOpen, setOrder }) => {
           <div className="flex items-center mt-2">
             <FaRegClock className='w-5 h-5' />
             <h1 className="px-2 text-sm">
-              Posted Time: {postDate}
+              Posted: {postDate}
             </h1>
           </div>
           <div className="flex items-center mt-2">

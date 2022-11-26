@@ -7,12 +7,15 @@ import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
 import uploadImage from '../../assets/upload-img.svg'
 import toast from 'react-hot-toast';
+import useTitle from '../../hooks/useTitle';
 
 const AddProduct = () => {
   const { user } = useContext(AuthContext);
   const [processing, setProcessing] = useState(false);
   const [, , isVerified] = useRole(user?.email)
   const [files, setFiles] = useState([]);
+
+  useTitle('Add Product');
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 

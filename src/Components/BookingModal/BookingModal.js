@@ -8,6 +8,8 @@ import toast from 'react-hot-toast';
 const BookingModal = ({ isOpen, closeModal, order }) => {
   const { user } = useContext(AuthContext)
 
+  console.log(order);
+
   const handelSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -21,7 +23,7 @@ const BookingModal = ({ isOpen, closeModal, order }) => {
       userEmail: user?.email,
       location: location,
       phone: phone,
-      price: order?.resale_price,
+      price: order?.resellPrice,
       image: order?.img
     }
     axios.post(`${process.env.REACT_APP_API_URL}/bookings`, booking, {
@@ -94,7 +96,8 @@ const BookingModal = ({ isOpen, closeModal, order }) => {
 
                       <div>
                         <label htmlFor="price" className='text-sm'>Price</label>
-                        <input name='price' type='text' defaultValue={`$${order?.resale_price}`} className="input w-full border-1 placeholder:text-sm border-gray-900 focus:outline-none" disabled />
+                        <input name='price' type='text' defaultValue={`$${order?.resellPrice
+                          }`} className="input w-full border-1 placeholder:text-sm border-gray-900 focus:outline-none" disabled />
                       </div>
 
                       <div>

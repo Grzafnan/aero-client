@@ -17,7 +17,7 @@ const CategoryServices = () => {
     queryKey: ['services'],
     queryFn: () => axios.get(`${process.env.REACT_APP_API_URL}/services/${id}`)
       .then(res => {
-        console.log(res?.data?.data);
+        // console.log(res?.data?.data);
         const data = res?.data?.data;
         return data
       })
