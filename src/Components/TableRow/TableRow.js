@@ -1,8 +1,8 @@
 import React from 'react';
 
 const TableRow = (seller) => {
-  console.log(seller);
-  const { seller: user, idx } = seller;
+  const { seller: user, idx, handleDeleteSeller } = seller;
+
   return (
     <>
       <tr>
@@ -10,10 +10,13 @@ const TableRow = (seller) => {
         <td>{user?.name}</td>
         <td>{user?.email}</td>
         <td>
-          <button className='btn btn-xs btn-success text-sm font-bold'>Verify</button>
+          <button className='btn btn-xs btn-success text-sm font-medium'>Verify</button>
         </td>
         <td>
-          <button className='btn btn-xs btn-error text-sm font-medium'>Delete</button>
+          <button
+            onClick={() => handleDeleteSeller(user?._id)}
+            className='btn btn-xs btn-error text-sm font-medium'
+          >Delete</button>
         </td>
       </tr>
     </>

@@ -1,20 +1,96 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import Spinner from '../../Components/Spinner/Spinner';
 import TableRow from '../../Components/TableRow/TableRow';
+import { useAdmin } from '../../hooks/useAdmin';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import Swal from 'sweetalert2'
 
 const AllSellers = () => {
+  const { user } = useContext(AuthContext);
 
-  const { data: allSellers, isLoading } = useQuery({
+  // console.log(user?.email);
+
+  const [isAdmin] = useAdmin(user?.email)
+  console.log(isAdmin);
+
+  const { data: allSellers, refetch, isLoading } = useQuery({
     queryKey: ['allSellers'],
-    queryFn: () => axios.get(`${process.env.REACT_APP_API_URL}/all-sellers`)
+    queryFn: () => axios.get(`${process.env.REACT_APP_API_URL}/all-sellers`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
+      }
+    })
       .then(res => {
-        console.log(res?.data?.data);
-        const data = res?.data?.data
-        return data
+        // console.log(res?.data?.data);
+        const data = res?.data?.data;
+        return data;
+      })
+      .catch(err => {
+        console.log(err.name, err.message);
       })
   })
+
+
+
+  const handleDeleteSeller = id => {
+    // console.log(id);
+
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-sm btn-success',
+        cancelButton: 'btn btn-sm btn-error mr-3'
+      },
+      buttonsStyling: false
+    })
+
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        if (isAdmin) {
+          axios.delete(`${process.env.REACT_APP_API_URL}/all-sellers/${id}`, {
+            headers: {
+              authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
+            }
+          })
+            .then(res => {
+              console.log(res.data);
+              if (res?.data?.data?.acknowledged) {
+                swalWithBootstrapButtons.fire(
+                  'Deleted!',
+                  'Seller has been deleted.',
+                  'success'
+                )
+                // toast.success(`Successfully deleted doctor by ${id}.`)
+                refetch();
+              }
+            })
+            .catch(err => {
+              console.log(err);
+            })
+        }
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'Seller is safe :)',
+          'error'
+        )
+      }
+    })
+  }
+
 
 
 
@@ -43,6 +119,7 @@ const AllSellers = () => {
                       key={seller._id}
                       seller={seller}
                       idx={idx}
+                      handleDeleteSeller={handleDeleteSeller}
                     />)
                   }
                 </tbody>

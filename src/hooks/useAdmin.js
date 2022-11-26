@@ -9,8 +9,8 @@ export const useAdmin = email => {
     if (email) {
       axios.get(`${process.env.REACT_APP_API_URL}/users/admin/${email}`)
         .then(res => {
-          console.log(res)
-          // setIsAdmin(res?.data?.isAdmin)
+          // console.log(res.data)
+          setIsAdmin(res?.data?.isAdmin)
           setIsAdminLoading(false)
         })
         .catch(err => {
