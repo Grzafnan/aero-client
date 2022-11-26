@@ -1,21 +1,27 @@
 import React, { useContext, useState } from 'react';
+import axios from 'axios';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
-import { savedUserDB } from '../../api/auth';
+import { useToken } from '../../hooks/useToken';
 
 const SignUp = () => {
   const { createUser, verify, updateUserProfile, signInWithGoogle, setLoading } = useContext(AuthContext);
-
   const googleProvider = new GoogleAuthProvider();
-
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const [createdUserEmail, setCreatedUserEmail] = useState('');
+  const [token] = useToken(createdUserEmail)
+
 
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
+
+  if (token) {
+    navigate(from, { replace: true })
+  }
 
 
   const handleRegister = (data) => {
@@ -29,7 +35,6 @@ const SignUp = () => {
         savedUserDB(data.name, data.email, data.userType)
         update(data.name)
         verifyEmail();
-        navigate(from, { replace: true })
         // ...
       })
       .catch((error) => {
@@ -68,14 +73,30 @@ const SignUp = () => {
       console.log(user)
       const role = 'Seller';
       savedUserDB(user?.displayName, user?.email, role)
-      setLoading(false)
-      navigate(from, { replace: true })
       toast.success('Login successful')
     })
       .catch(err => {
         console.log(err);
       })
   }
+
+
+  const savedUserDB = (name, email, role) => {
+    const user = {
+      name,
+      email,
+      role,
+    }
+
+    axios.post(`${process.env.REACT_APP_API_URL}/users`, user)
+      .then(res => {
+        setCreatedUserEmail(email);
+      }).catch(err => {
+        console.log(err);
+      })
+  }
+
+
 
   return (
     <section className='min-h-screen flex justify-center items-center'>

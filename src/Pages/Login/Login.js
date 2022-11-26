@@ -2,17 +2,18 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import toast from 'react-hot-toast';
-import { savedUserDB } from '../../api/auth';
 import ResetModal from './Modal/ResetModal';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
-
+import { useToken } from '../../hooks/useToken';
 
 const Login = () => {
   const [isOpen, setIsOpen] = useState(false)
   const googleProvider = new GoogleAuthProvider();
-
   const { signInWithGoogle, signInWithEmail, setLoading } = useContext(AuthContext);
+  const [createdUserEmail, setCreatedUserEmail] = useState('');
+  const [token] = useToken(createdUserEmail)
 
   const { register, handleSubmit, reset, formState: { errors } } =
     useForm();
@@ -21,9 +22,9 @@ const Login = () => {
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
 
-  // if (token) {
-  //   navigate(from, { replace: true })
-  // }
+  if (token) {
+    navigate(from, { replace: true })
+  }
 
   const role = 'User';
   const handleLogin = data => {
@@ -35,7 +36,6 @@ const Login = () => {
         // console.log(user);
         savedUserDB(user?.displayName, user?.email, role)
         reset();
-        navigate(from, { replace: true });
         toast.success('Login successful');
       })
       .catch((error) => {
@@ -55,8 +55,7 @@ const Login = () => {
         // The signed-in user info.
         const user = result.user;
         savedUserDB(user?.displayName, user?.email, role);
-        toast.success('Login successful..')
-        navigate(from, { replace: true });
+        toast.success('Login successful')
         // ...
       }).catch((error) => {
         // Handle Errors here.
@@ -69,6 +68,26 @@ const Login = () => {
         setLoading(false)
       })
   }
+
+
+
+  const savedUserDB = (name, email, role) => {
+    const user = {
+      name,
+      email,
+      role,
+    }
+    console.log(user);
+    axios.post(`${process.env.REACT_APP_API_URL}/users`, user)
+      .then(res => {
+        console.log(res.data);
+        setCreatedUserEmail(email);
+      }).catch(err => {
+        console.log(err);
+      })
+  }
+
+
 
   return (
     <section className='flex justify-center items-center md:min-h-screen px-5 md:px-0'>
