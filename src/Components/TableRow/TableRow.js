@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TableRow = (seller) => {
-  const { seller: user, idx, handleDeleteSeller } = seller;
+  const { seller: user, idx, handleDeleteSeller, handelVerifySeller } = seller;
 
   return (
     <>
@@ -10,7 +10,10 @@ const TableRow = (seller) => {
         <td>{user?.name}</td>
         <td>{user?.email}</td>
         <td>
-          <button className='btn btn-xs btn-success text-sm font-medium'>Verify</button>
+          <button
+            onClick={() => handelVerifySeller(user._id)}
+            className='btn btn-xs btn-success text-sm font-medium'
+          >Verify</button>
         </td>
         <td>
           <button

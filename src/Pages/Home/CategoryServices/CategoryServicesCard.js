@@ -6,7 +6,7 @@ import { FaCheckCircle, FaRegClock, FaRegUserCircle } from "react-icons/fa";
 
 const CategoryServicesCard = ({ service, setIsOpen, setOrder }) => {
 
-  const { brand, img, location, name, original_price, post_time, resale_price, seller_name, verification, years_of_use } = service;
+  const { brand, img, location, name, originalPrice, postDate, resellPrice, sellerName, verified, usesTime, condition, description } = service;
 
 
   const handelSetOrder = (service) => {
@@ -32,25 +32,26 @@ const CategoryServicesCard = ({ service, setIsOpen, setOrder }) => {
           <div className="flex items-center mt-2">
             <MdOutlinePriceChange className='w-6 h-6' />
             <h1 className="px-2 text-sm">Original Price:
-              <span className='font-medium ml-1'>${original_price}</span></h1>
+              <span className='font-medium ml-1'>${originalPrice}</span></h1>
           </div>
 
           <div className="flex items-center mt-2">
             <MdOutlinePriceCheck className='w-7 h-7' />
             <h1 className="px-2 text-sm"> Sale Price:
-              <span className='font-medium ml-1'>${resale_price}</span>
+              <span className='font-medium ml-1'>${resellPrice}</span>
             </h1>
           </div>
           <div className="flex items-center mt-2">
             <FcCalendar className='w-5 h-5' />
             <h1 className="px-2 text-sm">
-              {years_of_use} Used
+              {usesTime
+              } Used
             </h1>
           </div>
           <div className="flex items-center mt-2">
             <FaRegClock className='w-5 h-5' />
             <h1 className="px-2 text-sm">
-              Posted Time: {post_time}
+              Posted Time: {postDate}
             </h1>
           </div>
           <div className="flex items-center mt-2">
@@ -61,11 +62,13 @@ const CategoryServicesCard = ({ service, setIsOpen, setOrder }) => {
           <div className="flex items-center mt-2">
             <FaRegUserCircle className='w-5 h-5' />
             <div className='flex items-center'>
-              <h1 className="px-2 text-sm">{seller_name}</h1>
+              <h1 className="px-2 text-sm">{sellerName}</h1>
               {
-                verification === "verified" && <>
-                  <FaCheckCircle title='Verified' className='text-green-600 w-4 h-4' />  <span className='ml-1 text-sm text-green-600 '>Verified</span>
-                </>
+                verified && (
+                  <>
+                    <FaCheckCircle title='Verified' className='text-green-600 w-4 h-4' />  <span className='ml-1 text-sm text-green-600 '>Verified</span>
+                  </>
+                )
               }
             </div>
           </div>

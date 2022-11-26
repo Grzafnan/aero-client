@@ -12,8 +12,9 @@ const Login = () => {
   const [isOpen, setIsOpen] = useState(false)
   const googleProvider = new GoogleAuthProvider();
   const { signInWithGoogle, signInWithEmail, setLoading } = useContext(AuthContext);
-  const [createdUserEmail, setCreatedUserEmail] = useState('');
-  const [token] = useToken(createdUserEmail)
+  const [loginUserEmail, setLoginUserEmail] = useState('');
+
+  const [token] = useToken(loginUserEmail)
 
   const { register, handleSubmit, reset, formState: { errors } } =
     useForm();
@@ -26,15 +27,12 @@ const Login = () => {
     navigate(from, { replace: true })
   }
 
-  const role = 'User';
   const handleLogin = data => {
-
     signInWithEmail(data.email, data.password)
       .then((userCredential) => {
-        // Signed in 
         const user = userCredential.user;
         // console.log(user);
-        savedUserDB(user?.displayName, user?.email, role)
+        setLoginUserEmail(data.email)
         reset();
         toast.success('Login successful');
       })
@@ -53,6 +51,7 @@ const Login = () => {
     signInWithGoogle(googleProvider)
       .then((result) => {
         // The signed-in user info.
+        const role = 'User';
         const user = result.user;
         savedUserDB(user?.displayName, user?.email, role);
         toast.success('Login successful')
@@ -81,7 +80,7 @@ const Login = () => {
     axios.post(`${process.env.REACT_APP_API_URL}/users`, user)
       .then(res => {
         console.log(res.data);
-        setCreatedUserEmail(email);
+        setLoginUserEmail(email);
       }).catch(err => {
         console.log(err);
       })

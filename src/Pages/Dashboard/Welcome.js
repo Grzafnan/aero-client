@@ -7,7 +7,9 @@ const Welcome = () => {
   const { user } = useContext(AuthContext);
   const [role, isRoleLoading] = useRole(user?.email)
 
-
+  if (isRoleLoading) {
+    return <Spinner />
+  }
 
   return (
     <div className='h-screen text-gray-700 flex flex-col justify-center items-center pb-16'>
@@ -18,8 +20,6 @@ const Welcome = () => {
         <p className='text-6xl font-bold'>To</p>
       </div>
       <div className='flex justify-center text-gray-500 items-center mt-4'>
-
-
         <>
           {
             role === "Admin" && <p className='text-3xl font-medium'>Admin Dashboard</p>
@@ -29,7 +29,7 @@ const Welcome = () => {
           }
 
           {
-            role === 'User' && <p className='text-3xl font-medium'>Users Dashboard</p>
+            role === 'User' && <p className='text-3xl font-medium'>Buyers Dashboard</p>
           }
         </>
 

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 
 const useRole = (email) => {
   const [role, setRole] = useState(null);
+  const [isVerified, setIsVerified] = useState(false)
   const [isRoleLoading, setIsRoleLoading] = useState(true);
 
   useEffect(() => {
@@ -20,7 +21,7 @@ const useRole = (email) => {
       })
   }, [email])
 
-  return [role, isRoleLoading]
+  return [role, isRoleLoading, isVerified]
 };
 
 export default useRole;

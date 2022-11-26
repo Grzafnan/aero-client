@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import axios from 'axios';
 import Spinner from '../../Components/Spinner/Spinner';
 import TableRow from '../../Components/TableRow/TableRow';
@@ -31,6 +31,13 @@ const AllSellers = () => {
         console.log(err.name, err.message);
       })
   })
+
+
+
+  const handelVerifySeller = (id) => {
+    console.log(id);
+  }
+
 
 
 
@@ -70,7 +77,6 @@ const AllSellers = () => {
                   'Seller has been deleted.',
                   'success'
                 )
-                // toast.success(`Successfully deleted doctor by ${id}.`)
                 refetch();
               }
             })
@@ -92,8 +98,6 @@ const AllSellers = () => {
   }
 
 
-
-
   return (
     <>
       {
@@ -106,11 +110,11 @@ const AllSellers = () => {
               <table className="table w-full">
                 <thead>
                   <tr>
-                    <th></th>
+                    <th>S/L</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th></th>
-                    <th></th>
+                    <th>Status</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -120,6 +124,7 @@ const AllSellers = () => {
                       seller={seller}
                       idx={idx}
                       handleDeleteSeller={handleDeleteSeller}
+                      handelVerifySeller={handelVerifySeller}
                     />)
                   }
                 </tbody>
