@@ -140,13 +140,19 @@ const AllSellers = () => {
                   </thead>
                   <tbody>
                     {
-                      allSellers?.map((seller, idx) => <TableRow
-                        key={seller._id}
-                        seller={seller}
-                        idx={idx}
-                        handleDeleteSeller={handleDeleteSeller}
-                        handelVerifySeller={handelVerifySeller}
-                      />)
+                      allSellers?.length && (
+                        <>
+                          {
+                            allSellers?.map((seller, idx) => <TableRow
+                              key={seller._id}
+                              seller={seller}
+                              idx={idx}
+                              handleDeleteSeller={handleDeleteSeller}
+                              handelVerifySeller={handelVerifySeller}
+                            />)
+                          }
+                        </>
+                      )
                     }
                   </tbody>
                 </table>

@@ -9,6 +9,9 @@ const CategoryServicesCard = ({ service, setIsOpen, setOrder }) => {
 
   const { brand, img, location, name, originalPrice, postDate, resellPrice, sellerName, verified, usesTime, condition, description } = service;
 
+  console.log(usesTime);
+
+
   const handelSetOrder = (service) => {
     setOrder(service);
     setIsOpen(true);

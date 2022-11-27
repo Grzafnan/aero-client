@@ -13,8 +13,9 @@ const useRole = (email) => {
       }
     })
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         setRole(res?.data?.role);
+        console.log(res?.data?.verified);
         setIsVerified(res?.data?.verified);
         setIsRoleLoading(false)
       })

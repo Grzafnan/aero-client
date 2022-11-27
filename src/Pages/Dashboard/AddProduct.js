@@ -12,7 +12,7 @@ import useTitle from '../../hooks/useTitle';
 const AddProduct = () => {
   const { user } = useContext(AuthContext);
   const [processing, setProcessing] = useState(false);
-  const [, isVerified] = useRole(user?.email)
+  const [, , isVerified] = useRole(user?.email)
   const [files, setFiles] = useState([]);
 
   console.log("Role from add-", isVerified);
@@ -76,12 +76,15 @@ const AddProduct = () => {
     data['sellerId'] = user?.uid;
     data['verified'] = isVerified;
 
+
+    console.log(data);
+
     axios.post(`https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_IMGBB_KEY}`, formData)
       .then(res => {
         // console.log(res.data);
         if (res?.data?.data?.image?.url) {
           data['img'] = res?.data?.data?.image?.url;
-          axios.post(`${process.env.REACT_APP_API_URL}/add-services`, data, {
+          axios.post(`${process.env.REACT_APP_API_URL}/add-services?email=${user?.email}`, data, {
             headers: {
               authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
             }
