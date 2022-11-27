@@ -7,7 +7,11 @@ export const useAdmin = email => {
 
   useEffect(() => {
     if (email) {
-      axios.get(`${process.env.REACT_APP_API_URL}/users/admin/${email}`)
+      axios.get(`${process.env.REACT_APP_API_URL}/users/admin/${email}`, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
+        }
+      })
         .then(res => {
           // console.log(res.data)
           setIsAdmin(res?.data?.isAdmin)

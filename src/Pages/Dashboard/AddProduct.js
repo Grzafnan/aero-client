@@ -12,8 +12,10 @@ import useTitle from '../../hooks/useTitle';
 const AddProduct = () => {
   const { user } = useContext(AuthContext);
   const [processing, setProcessing] = useState(false);
-  const [, , isVerified] = useRole(user?.email)
+  const [, isVerified] = useRole(user?.email)
   const [files, setFiles] = useState([]);
+
+  console.log("Role from add-", isVerified);
 
   useTitle('Add Product');
 

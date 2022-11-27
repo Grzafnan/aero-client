@@ -5,11 +5,17 @@ import axios from 'axios';
 import Spinner from '../../../Components/Spinner/Spinner';
 import CategoryServicesCard from './CategoryServicesCard';
 import BookingModal from '../../../Components/BookingModal/BookingModal';
+import { useLocation } from 'react-router-dom';
+import useTitle from '../../../hooks/useTitle';
 
 const CategoryServices = () => {
   const { id } = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const [order, setOrder] = useState(null);
+  const { state } = useLocation()
+  // console.log(state);
+
+  useTitle(`${state}`)
 
   // console.log(order);
 

@@ -8,7 +8,7 @@ import toast from 'react-hot-toast';
 const BookingModal = ({ isOpen, closeModal, order }) => {
   const { user } = useContext(AuthContext)
 
-  console.log(order);
+  // console.log(order);
 
   const handelSubmit = (event) => {
     event.preventDefault();

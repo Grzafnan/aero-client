@@ -3,6 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import Spinner from '../../../Components/Spinner/Spinner';
 import CategoryCard from './CategoryCard';
+import useTitle from '../../../hooks/useTitle';
 
 
 const Categories = () => {
@@ -16,6 +17,8 @@ const Categories = () => {
       })
       .catch(err => console.error(err))
   })
+
+  useTitle('Cars Category')
 
   // console.log(categories);
 

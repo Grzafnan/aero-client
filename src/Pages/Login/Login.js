@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import ResetModal from './Modal/ResetModal';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import { useToken } from '../../hooks/useToken';
+import useTitle from '../../hooks/useTitle';
 
 const Login = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -15,6 +16,8 @@ const Login = () => {
   const [loginUserEmail, setLoginUserEmail] = useState('');
 
   const [token] = useToken(loginUserEmail)
+
+  useTitle('Log in')
 
   const { register, handleSubmit, reset, formState: { errors } } =
     useForm();

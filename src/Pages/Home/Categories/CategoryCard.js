@@ -1,10 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PrimaryButton from '../../../Components/PrimaryButton/PrimaryButton';
 
 const CategoryCard = ({ category }) => {
 
   const { categories_id, title, img, description } = category;
+
+  const navigate = useNavigate()
+
+
+  const handelNavigate = () => {
+    const data = title;
+    navigate(`/category/${categories_id}`, { state: data })
+  }
 
   return (
     <>
@@ -22,16 +30,18 @@ const CategoryCard = ({ category }) => {
             }
           </p>
           <div className="card-actions justify-center mt-1 w-full">
-            <Link
+            {/* <Link
               to={`/category/${categories_id}`}
               className="w-full"
-            >
-              {/* <button className="h-10 text-white rounded-lg w-full btn-primary">
-                SEE MORE
-              </button> */}
+            > */}
+            <button
+              onClick={() => handelNavigate(current => handelNavigate({ ...current, data: title }))}
+              className="h-10 text-white rounded-lg w-full btn-primary">
+              SEE MORE
+            </button>
 
-              <PrimaryButton>SEE MORE</PrimaryButton>
-            </Link>
+            {/* <PrimaryButton>SEE MORE</PrimaryButton> */}
+            {/* </Link> */}
           </div>
         </div>
       </div >

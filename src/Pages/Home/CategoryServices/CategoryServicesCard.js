@@ -4,16 +4,15 @@ import { GrLocation } from "react-icons/gr";
 import { MdOutlinePriceChange, MdOutlinePriceCheck } from "react-icons/md";
 import { FaCheckCircle, FaRegClock, FaRegUserCircle } from "react-icons/fa";
 
+
 const CategoryServicesCard = ({ service, setIsOpen, setOrder }) => {
 
   const { brand, img, location, name, originalPrice, postDate, resellPrice, sellerName, verified, usesTime, condition, description } = service;
-
 
   const handelSetOrder = (service) => {
     setOrder(service);
     setIsOpen(true);
   }
-
 
   return (
     <>
@@ -26,7 +25,9 @@ const CategoryServicesCard = ({ service, setIsOpen, setOrder }) => {
             <div className="badge badge-outline badge-primary font-medium text-gray-900">{brand}</div>
           </div>
 
-          <p className="py-2">Full Stack maker & UI / UX Designer , love hip hop music Author of Building UI.</p>
+          <p className="py-2 text-[15px]">
+            {description?.length > 90 ? description?.slice(0, 90) + '...' : description}
+          </p>
 
 
           <div className="flex items-center mt-2">

@@ -6,14 +6,17 @@ import TableRow from '../../Components/TableRow/TableRow';
 import { useAdmin } from '../../hooks/useAdmin';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import Swal from 'sweetalert2'
+import toast from 'react-hot-toast';
+import useRole from '../../hooks/useRole';
+import useTitle from '../../hooks/useTitle';
 
 const AllSellers = () => {
   const { user } = useContext(AuthContext);
-
-  // console.log(user?.email);
-
   const [isAdmin] = useAdmin(user?.email)
-  console.log(isAdmin);
+  console.log("isAdmin-", isAdmin);
+
+
+  useTitle('All Sellers')
 
   const { data: allSellers, refetch, isLoading } = useQuery({
     queryKey: ['allSellers'],
@@ -34,8 +37,28 @@ const AllSellers = () => {
 
 
 
-  const handelVerifySeller = (id) => {
-    console.log(id);
+  const handelVerifySeller = (id, email) => {
+    console.log(id, email);
+
+    fetch(`${process.env.REACT_APP_API_URL}/sellers/admin/${id}?email=${email}`, {
+      method: 'PUT',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data.data);
+        if (data.data.modifiedCount > 0) {
+          toast.success('Successfully Seller Verified.')
+          refetch();
+        }
+      })
+      .catch(err => {
+        console.log(err.name, err.message);
+        toast.error(err?.response?.data?.message)
+      })
+
   }
 
 
@@ -43,7 +66,6 @@ const AllSellers = () => {
 
   const handleDeleteSeller = id => {
     // console.log(id);
-
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-sm btn-success',
@@ -51,7 +73,6 @@ const AllSellers = () => {
       },
       buttonsStyling: false
     })
-
     swalWithBootstrapButtons.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -64,7 +85,7 @@ const AllSellers = () => {
       if (result.isConfirmed) {
 
         if (isAdmin) {
-          axios.delete(`${process.env.REACT_APP_API_URL}/all-sellers/${id}`, {
+          axios.delete(`${process.env.REACT_APP_API_URL}/all-sellers/${id}?email=${user?.email}`, {
             headers: {
               authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
             }
@@ -106,29 +127,31 @@ const AllSellers = () => {
         )
           :
           (
-            <div className="overflow-x-auto">
-              <table className="table w-full">
-                <thead>
-                  <tr>
-                    <th>S/L</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {
-                    allSellers?.map((seller, idx) => <TableRow
-                      key={seller._id}
-                      seller={seller}
-                      idx={idx}
-                      handleDeleteSeller={handleDeleteSeller}
-                      handelVerifySeller={handelVerifySeller}
-                    />)
-                  }
-                </tbody>
-              </table>
+            <div><h1 className='text-3xl text-center mb-3 font-semibold'>All Sellers</h1>
+              <div className="overflow-x-auto">
+                <table className="table w-full">
+                  <thead>
+                    <tr>
+                      <th>S/L</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      allSellers?.map((seller, idx) => <TableRow
+                        key={seller._id}
+                        seller={seller}
+                        idx={idx}
+                        handleDeleteSeller={handleDeleteSeller}
+                        handelVerifySeller={handelVerifySeller}
+                      />)
+                    }
+                  </tbody>
+                </table>
+              </div>
             </div>
           )
       }

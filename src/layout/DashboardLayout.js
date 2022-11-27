@@ -6,6 +6,7 @@ import logo from '../../src/assets/logo.png'
 import { AuthContext } from '../contexts/AuthProvider/AuthProvider';
 import Spinner from '../Components/Spinner/Spinner';
 import useRole from '../hooks/useRole';
+import useTitle from '../hooks/useTitle';
 
 const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
@@ -13,6 +14,8 @@ const DashboardLayout = () => {
   const [role, isRoleLoading] = useRole(user?.email)
 
   console.log(role);
+
+  useTitle('Dashboard')
 
   if (isRoleLoading) {
     return <Spinner />

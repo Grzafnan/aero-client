@@ -3,6 +3,8 @@ import React from 'react';
 const TableRow = (seller) => {
   const { seller: user, idx, handleDeleteSeller, handelVerifySeller } = seller;
 
+  // console.log(seller);
+
   return (
     <>
       <tr>
@@ -10,10 +12,16 @@ const TableRow = (seller) => {
         <td>{user?.name}</td>
         <td>{user?.email}</td>
         <td>
-          <button
-            onClick={() => handelVerifySeller(user._id)}
-            className='btn btn-xs btn-success text-sm font-medium'
-          >Verify</button>
+          {
+            user?.verified ? <>
+              <span className='text-white bg-green-700 px-3 py-[2px] rounded-md font-semibold'>Verified</span>
+            </>
+              :
+              <button
+                onClick={() => handelVerifySeller(user?._id, user?.email)}
+                className='btn btn-xs btn-success text-sm font-medium'
+              > Verify </button>
+          }
         </td>
         <td>
           <button
