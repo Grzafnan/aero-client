@@ -3,12 +3,13 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import useTitle from '../../hooks/useTitle';
 import axios from 'axios';
+import Swal from 'sweetalert2'
+import { useAdmin } from '../../hooks/useAdmin';
 
 const AllBuyers = () => {
-
   const { user } = useContext(AuthContext);
-
-  const { data: allBuyers, isLoading } = useQuery({
+  const [isAdmin] = useAdmin(user?.email)
+  const { data: allBuyers, refetch, isLoading } = useQuery({
     queryKey: ['allBuyers', user?.email],
     queryFn: () => axios.get(`${process.env.REACT_APP_API_URL}/all-buyers/admin?email=${user?.email}`, {
       headers: {
@@ -28,6 +29,56 @@ const AllBuyers = () => {
 
   const handleDeleteBuyer = (id) => {
     console.log(id);
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-sm btn-success',
+        cancelButton: 'btn btn-sm btn-error mr-3'
+      },
+      buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        if (isAdmin) {
+          axios.delete(`${process.env.REACT_APP_API_URL}/users/admin/${id}?email=${user?.email}`, {
+            headers: {
+              authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
+            }
+          })
+            .then(res => {
+              console.log(res.data);
+              if (res?.data?.data?.acknowledged) {
+                swalWithBootstrapButtons.fire(
+                  'Deleted!',
+                  'Seller has been deleted.',
+                  'success'
+                )
+                refetch();
+              }
+            })
+            .catch(err => {
+              console.log(err);
+            })
+        }
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'Seller is safe :)',
+          'error'
+        )
+      }
+    })
   }
 
 

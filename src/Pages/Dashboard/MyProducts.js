@@ -4,13 +4,17 @@ import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import Spinner from '../../Components/Spinner/Spinner';
 import useTitle from '../../hooks/useTitle';
+import useRole from '../../hooks/useRole';
+import Swal from 'sweetalert2'
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
+  const [role] = useRole(user?.email);
+  // console.log('role-from Products', role);
 
   useTitle('My Products');
 
-  const { data: products, isLoading } = useQuery({
+  const { data: products, refetch, isLoading } = useQuery({
     queryKey: ['products'],
     queryFn: async () => await axios.get(`${process.env.REACT_APP_API_URL}/products/${user?.uid}?email=${user?.email}`, {
       headers: {
@@ -18,15 +22,75 @@ const MyProducts = () => {
       }
     })
       .then(res => {
-
         const data = res?.data?.data;
+
         return data
       })
       .catch(err => console.log(err))
   })
 
-  console.log('seller products', products);
+  // console.log('seller products', products);
 
+
+  const handelAdvertise = (id) => {
+    console.log(id);
+  }
+
+  const handleDelete = (id) => {
+    console.log(id);
+
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-sm btn-success',
+        cancelButton: 'btn btn-sm btn-error mr-3'
+      },
+      buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        if (role === 'Seller') {
+          axios.delete(`${process.env.REACT_APP_API_URL}/products/${id}?email=${user?.email}`, {
+            headers: {
+              authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
+            }
+          })
+            .then(res => {
+              console.log(res.data);
+              if (res?.data?.data?.acknowledged) {
+                swalWithBootstrapButtons.fire(
+                  'Deleted!',
+                  'Seller has been deleted.',
+                  'success'
+                )
+                refetch();
+              }
+            })
+            .catch(err => {
+              console.log(err);
+            })
+        }
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'Seller is safe :)',
+          'error'
+        )
+      }
+    })
+
+  }
 
   return (
     <>
@@ -57,13 +121,13 @@ const MyProducts = () => {
                       <td>${product?.resellPrice}</td>
                       <td>
                         <button
-                          //  onClick={() => handelVerifySeller(user._id)}
+                          onClick={() => handelAdvertise(product._id)}
                           className='btn btn-xs btn-success text-sm font-medium'
                         >Available</button>
                       </td>
                       <td>
                         <button
-                          //  onClick={() => handleDeleteSeller(user?._id)}
+                          onClick={() => handleDelete(product?._id)}
                           className='btn btn-xs btn-error text-sm font-medium'
                         >Delete</button>
                       </td>

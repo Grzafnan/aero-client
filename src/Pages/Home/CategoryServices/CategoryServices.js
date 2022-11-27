@@ -43,7 +43,7 @@ const CategoryServices = () => {
     <section className='my-10'>
       <div>
 
-        <h1 className='text-5xl font-bold text-center'>Category Cars</h1>
+        <h1 className='text-5xl font-bold text-center'>{state}</h1>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-10 gap-10 my-10'>
           {
             services?.map(service => <CategoryServicesCard

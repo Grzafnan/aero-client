@@ -7,13 +7,12 @@ import { useAdmin } from '../../hooks/useAdmin';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import Swal from 'sweetalert2'
 import toast from 'react-hot-toast';
-import useRole from '../../hooks/useRole';
 import useTitle from '../../hooks/useTitle';
 
 const AllSellers = () => {
   const { user } = useContext(AuthContext);
   const [isAdmin] = useAdmin(user?.email)
-  console.log("isAdmin-", isAdmin);
+  console.log("isAdmin From all seller- ", isAdmin);
 
 
   useTitle('All Sellers')
@@ -85,7 +84,7 @@ const AllSellers = () => {
       if (result.isConfirmed) {
 
         if (isAdmin) {
-          axios.delete(`${process.env.REACT_APP_API_URL}/all-sellers/${id}?email=${user?.email}`, {
+          axios.delete(`${process.env.REACT_APP_API_URL}/users/admin/${id}?email=${user?.email}`, {
             headers: {
               authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
             }
