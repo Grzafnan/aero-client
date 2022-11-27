@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import Spinner from '../../Components/Spinner/Spinner';
 
@@ -22,15 +23,6 @@ const MyOrders = () => {
         return data;
       })
   })
-
-
-  const handlePayment = (id) => {
-    console.log(id);
-  }
-
-
-
-
 
   return (
     <>
@@ -79,10 +71,19 @@ const MyOrders = () => {
                                     {booking?.phone}
                                   </td>
                                   <td>
-                                    <button
-                                      onClick={() => handlePayment(booking?._id)}
-                                      className='btn btn-sm btn-primary text-gray-100 text-sm font-medium'
-                                    >Pay</button>
+                                    {
+                                      booking?.price && !booking?.paid && <Link
+                                        to={`/dashboard/payment/${booking?._id}`}
+                                      >
+                                        <button
+                                          className='btn btn-sm btn-primary text-gray-100 text-sm font-medium'
+                                        >Pay</button>
+                                      </Link>
+                                    }
+
+                                    {
+                                      booking?.price && booking?.paid && <span className='text-white bg-green-700 px-3 py-[2px] rounded-md font-semibold'>Paid</span>
+                                    }
                                   </td>
                                 </tr>
                               ))

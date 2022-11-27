@@ -1,6 +1,4 @@
 import React from 'react';
-import { format } from 'date-fns'
-import differenceInCalendarYears from 'date-fns/differenceInCalendarYears'
 import { FcCalendar } from "react-icons/fc";
 import { GrLocation } from "react-icons/gr";
 import { MdOutlinePriceChange, MdOutlinePriceCheck } from "react-icons/md";
@@ -8,8 +6,8 @@ import { FaCheckCircle, FaRegClock, FaRegUserCircle, FaCarCrash } from "react-ic
 
 const CategoryServicesCard = ({ service, setIsOpen, setOrder }) => {
 
-  const { brand, img, location, name, originalPrice, postDate, resellPrice, sellerName, verified, usesTime, condition, description, isBooked } = service;
-
+  const { brand, img, location, name, originalPrice, postDate, resellPrice, sellerName, verified, usesTime, condition, description, isBooked, sold } = service;
+  console.log(service);
   const handelSetOrder = (service) => {
     setOrder(service);
     setIsOpen(true);
@@ -27,7 +25,7 @@ const CategoryServicesCard = ({ service, setIsOpen, setOrder }) => {
           </div>
 
           <p className="py-2 text-[15px]">
-            {description?.length > 90 ? description?.slice(0, 90) + '...' : description}
+            {description?.length > 120 ? description?.slice(0, 120) + '...' : description}
           </p>
 
 
@@ -51,7 +49,7 @@ const CategoryServicesCard = ({ service, setIsOpen, setOrder }) => {
           <div className="flex items-center mt-2">
             <FcCalendar className='w-5 h-5' />
             <h1 className="px-2 text-sm">
-              Years Of Used:  <span className='font-semibold'>
+              Years Of Use:  <span className='font-semibold'>
                 {(usesTime.split('-')[0])}
               </span>
             </h1>

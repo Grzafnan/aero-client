@@ -222,14 +222,7 @@ const AddProduct = () => {
               aria-invalid={errors.description ? "true" : "false"}
               type='text'
               className=" w-full inline-block py-[6px] border-[1px] border-accent pl-3 rounded-[10px]" placeholder="Write a description"></textarea>
-
-            {/* <input {...register("location", { required: true })}
-              aria-invalid={errors.location ? "true" : "false"}
-              type='text'
-              className="w-full inline-block py-[6px] border-[1px] border-accent pl-3 rounded-[10px]" /> */}
-
             {errors.description?.type === 'required' && <p className='text-red-600 text-sm'>Description is required</p>}
-
           </div>
 
           <div>
@@ -248,9 +241,6 @@ const AddProduct = () => {
               {thumbs}
             </aside>
           </div>
-          {/* 
-          <input className='w-full btn text-white btn-secondary mt-2' type="submit" value='Add Product' /> */}
-
           <button
             className='w-full btn text-white btn-secondary mt-2'
             type='submit'>
