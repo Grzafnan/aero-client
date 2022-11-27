@@ -1,26 +1,31 @@
-import React, { useContext } from 'react';
+import React, { useContext, Fragment, useState } from 'react';
 import axios from 'axios';
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
+import { format } from 'date-fns'
 
 const BookingModal = ({ isOpen, closeModal, order }) => {
   const { user } = useContext(AuthContext)
-
+  const [processing, setProcessing] = useState(false);
   // console.log(order);
 
   const handelSubmit = (event) => {
     event.preventDefault();
+    setProcessing(true)
     const form = event.target;
     const location = form.location.value;
     const phone = form.phone.value;
 
+
     const booking = {
       brand: order.brand,
       name: order.name,
+      serviceId: order?._id,
       userName: user?.displayName,
       userEmail: user?.email,
+      userUid: user?.uid,
+      bookingDate: format(new Date(), 'PP'),
       location: location,
       phone: phone,
       price: order?.resellPrice,
@@ -32,9 +37,10 @@ const BookingModal = ({ isOpen, closeModal, order }) => {
       }
     })
       .then(res => {
-        console.log(res);
+        // console.log('from booking modal', res?.data?.data);
         if (res?.data?.data?.acknowledged) {
           toast.success(`Successfully booked ${order?.brand} ${order?.name}`)
+          setProcessing(false)
           closeModal();
         }
       })
@@ -111,9 +117,14 @@ const BookingModal = ({ isOpen, closeModal, order }) => {
                       </div>
 
                       <div className="mt-4">
-                        <input type="submit" value="Submit"
+                        {/* <input type="submit" value="Submit"
                           className="inline-flex justify-center rounded-md btn-primary text-white px-4 py-3 font-medium w-full transition-all duration-500 ease-in-out cursor-pointer"
-                        />
+                        /> */}
+                        <button
+                          className='w-full btn text-white btn-secondary mt-2'
+                          type='submit'>
+                          {processing ? <div className="w-10 h-10 border-4 border-dashed border-white rounded-full animate-spin"></div> : "Submit"}
+                        </button>
                       </div>
                     </form>
                   </div>

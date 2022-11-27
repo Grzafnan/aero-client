@@ -1,16 +1,14 @@
 import React from 'react';
+import { format } from 'date-fns'
+import differenceInCalendarYears from 'date-fns/differenceInCalendarYears'
 import { FcCalendar } from "react-icons/fc";
 import { GrLocation } from "react-icons/gr";
 import { MdOutlinePriceChange, MdOutlinePriceCheck } from "react-icons/md";
-import { FaCheckCircle, FaRegClock, FaRegUserCircle } from "react-icons/fa";
-
+import { FaCheckCircle, FaRegClock, FaRegUserCircle, FaCarCrash } from "react-icons/fa";
 
 const CategoryServicesCard = ({ service, setIsOpen, setOrder }) => {
 
-  const { brand, img, location, name, originalPrice, postDate, resellPrice, sellerName, verified, usesTime, condition, description } = service;
-
-  console.log(usesTime);
-
+  const { brand, img, location, name, originalPrice, postDate, resellPrice, sellerName, verified, usesTime, condition, description, isBooked } = service;
 
   const handelSetOrder = (service) => {
     setOrder(service);
@@ -34,6 +32,11 @@ const CategoryServicesCard = ({ service, setIsOpen, setOrder }) => {
 
 
           <div className="flex items-center mt-2">
+            <FaCarCrash className='w-6 h-6' />
+            <h1 className="px-2 text-sm">Condition:
+              <span className='font-medium ml-1'>{condition}</span></h1>
+          </div>
+          <div className="flex items-center mt-2">
             <MdOutlinePriceChange className='w-6 h-6' />
             <h1 className="px-2 text-sm">Original Price:
               <span className='font-medium ml-1'>${originalPrice}</span></h1>
@@ -48,8 +51,9 @@ const CategoryServicesCard = ({ service, setIsOpen, setOrder }) => {
           <div className="flex items-center mt-2">
             <FcCalendar className='w-5 h-5' />
             <h1 className="px-2 text-sm">
-              {usesTime
-              } Used
+              Years Of Used:  <span className='font-semibold'>
+                {(usesTime.split('-')[0])}
+              </span>
             </h1>
           </div>
           <div className="flex items-center mt-2">
@@ -79,8 +83,13 @@ const CategoryServicesCard = ({ service, setIsOpen, setOrder }) => {
           <div className='mt-3'>
             <button
               onClick={() => handelSetOrder(service)}
+              disabled={isBooked}
               className='btn-primary text-white h-10 w-full rounded-md transition-all ease-in-out duration-300'
-            >Book Now</button>
+            >
+              {
+                isBooked ? 'Booked' : ' Book Now'
+              }
+            </button>
           </div>
         </div>
       </div>
