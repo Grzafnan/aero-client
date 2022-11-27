@@ -1,5 +1,6 @@
 import React from 'react';
 import useTitle from '../../hooks/useTitle';
+import Advertise from './Advertise/Advertise';
 import Banner from './Banner';
 import Categories from './Categories/Categories';
 import FeatureMust from './FeatureMust/FeatureMust';
@@ -13,6 +14,7 @@ const Home = () => {
     <div className='mx-5'>
       <Banner />
       <Hero />
+      <Advertise />
       <Categories />
       <FeatureMust />
       <Statics />
