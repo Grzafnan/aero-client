@@ -8,13 +8,14 @@ import axios from 'axios';
 import uploadImage from '../../assets/upload-img.svg'
 import toast from 'react-hot-toast';
 import useTitle from '../../hooks/useTitle';
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const { user } = useContext(AuthContext);
   const [processing, setProcessing] = useState(false);
   const [, , isVerified] = useRole(user?.email)
   const [files, setFiles] = useState([]);
-
+  const navigate = useNavigate();
   console.log("Role from add-", isVerified);
 
   useTitle('Add Product');
@@ -97,7 +98,7 @@ const AddProduct = () => {
                 setProcessing(false)
                 toast.success(`${data.brand, data.name} is added successfully!`);
                 reset();
-                // navigate('/dashboard/');
+                navigate('/dashboard/my-products');
               }
             })
             .catch(err => {
