@@ -26,7 +26,7 @@ const CheckOutForm = ({ booking }) => {
   // console.log(booking);
 
   useEffect(() => {
-    axios.post(`${process.env.REACT_APP_API_URL}/create-payment-intent`, {
+    axios.post(`${process.env.REACT_APP_API_URL}create-payment-intent`, {
       price,
       headers: {
         authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
@@ -109,7 +109,7 @@ const CheckOutForm = ({ booking }) => {
         transactionId: paymentIntent?.id,
       }
 
-      axios.post(`${process.env.REACT_APP_API_URL}/payments`, payment, {
+      axios.post(`${process.env.REACT_APP_API_URL}payments`, payment, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
         }

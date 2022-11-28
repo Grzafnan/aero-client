@@ -18,7 +18,7 @@ const Advertise = () => {
 
   const { data: services, isLoading } = useQuery({
     queryKey: ['advertise'],
-    queryFn: () => axios.get(`${process.env.REACT_APP_API_URL}/advertise`)
+    queryFn: () => axios.get(`${process.env.REACT_APP_API_URL}advertise`)
       .then(res => {
         // console.log(res?.data?.data);
         const data = res?.data?.data;

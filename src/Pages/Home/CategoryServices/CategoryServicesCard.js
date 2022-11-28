@@ -32,7 +32,7 @@ const CategoryServicesCard = ({ service, setIsOpen, setOrder }) => {
       sellerEmail: sellerEmail,
     }
 
-    axios.post(`${process.env.REACT_APP_API_URL}/reports/${id}?email=${user?.email}`, report, {
+    axios.post(`${process.env.REACT_APP_API_URL}reports/${id}?email=${user?.email}`, report, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
       }

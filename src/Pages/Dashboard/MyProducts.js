@@ -17,7 +17,7 @@ const MyProducts = () => {
 
   const { data: products, refetch, isLoading } = useQuery({
     queryKey: ['products'],
-    queryFn: async () => await axios.get(`${process.env.REACT_APP_API_URL}/products/${user?.uid}?email=${user?.email}`, {
+    queryFn: async () => await axios.get(`${process.env.REACT_APP_API_URL}products/${user?.uid}?email=${user?.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
       }
@@ -37,7 +37,7 @@ const MyProducts = () => {
       advertise: true
     }
     if (role === 'Seller') {
-      axios.put(`${process.env.REACT_APP_API_URL}/advertise/${id}?email=${user?.email}`,
+      axios.put(`${process.env.REACT_APP_API_URL}advertise/${id}?email=${user?.email}`,
         advertise, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
@@ -77,7 +77,7 @@ const MyProducts = () => {
       if (result.isConfirmed) {
 
         if (role === 'Seller') {
-          axios.delete(`${process.env.REACT_APP_API_URL}/products/${id}?email=${user?.email}`, {
+          axios.delete(`${process.env.REACT_APP_API_URL}products/${id}?email=${user?.email}`, {
             headers: {
               authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
             }

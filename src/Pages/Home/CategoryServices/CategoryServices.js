@@ -23,7 +23,7 @@ const CategoryServices = () => {
 
   const { data: services, refetch, isLoading } = useQuery({
     queryKey: ['services', user?.email],
-    queryFn: () => axios.get(`${process.env.REACT_APP_API_URL}/services/${id}?email=${user?.email}`, {
+    queryFn: () => axios.get(`${process.env.REACT_APP_API_URL}services/${id}?email=${user?.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
       }

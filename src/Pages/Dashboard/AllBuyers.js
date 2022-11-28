@@ -12,7 +12,7 @@ const AllBuyers = () => {
   const [isAdmin] = useAdmin(user?.email)
   const { data: allBuyers, refetch, isLoading } = useQuery({
     queryKey: ['allBuyers', user?.email],
-    queryFn: () => axios.get(`${process.env.REACT_APP_API_URL}/all-buyers/admin?email=${user?.email}`, {
+    queryFn: () => axios.get(`${process.env.REACT_APP_API_URL}all-buyers/admin?email=${user?.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
       }
@@ -54,7 +54,7 @@ const AllBuyers = () => {
       if (result.isConfirmed) {
 
         if (isAdmin) {
-          axios.delete(`${process.env.REACT_APP_API_URL}/users/admin/${id}?email=${user?.email}`, {
+          axios.delete(`${process.env.REACT_APP_API_URL}users/admin/${id}?email=${user?.email}`, {
             headers: {
               authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
             }

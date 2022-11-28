@@ -7,7 +7,7 @@ export const useToken = (email) => {
   useEffect(() => {
 
     if (email) {
-      axios.get(`${process.env.REACT_APP_API_URL}/jwt?email=${email}`)
+      axios.get(`${process.env.REACT_APP_API_URL}jwt?email=${email}`)
         .then(res => {
           if (res?.data?.success) {
             localStorage.setItem('Aero-Token', res?.data?.token)

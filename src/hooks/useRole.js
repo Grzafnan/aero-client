@@ -7,7 +7,7 @@ const useRole = (email) => {
   const [isRoleLoading, setIsRoleLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/users/${email}`, {
+    axios.get(`${process.env.REACT_APP_API_URL}users/${email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
       }

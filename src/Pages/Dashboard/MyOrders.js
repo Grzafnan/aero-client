@@ -13,7 +13,7 @@ const MyOrders = () => {
 
   const { data: bookings, isLoading } = useQuery({
     queryKey: ['bookings', user?.uid, user?.email],
-    queryFn: () => axios.get(`${process.env.REACT_APP_API_URL}/my-bookings/${user?.uid}?email=${user?.email}`, {
+    queryFn: () => axios.get(`${process.env.REACT_APP_API_URL}my-bookings/${user?.uid}?email=${user?.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
       }

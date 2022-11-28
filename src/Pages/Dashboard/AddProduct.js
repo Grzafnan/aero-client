@@ -84,7 +84,7 @@ const AddProduct = () => {
         // console.log(res.data);
         if (res?.data?.data?.image?.url) {
           data['img'] = res?.data?.data?.image?.url;
-          axios.post(`${process.env.REACT_APP_API_URL}/add-services?email=${user?.email}`, data, {
+          axios.post(`${process.env.REACT_APP_API_URL}add-services?email=${user?.email}`, data, {
             headers: {
               authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
             }

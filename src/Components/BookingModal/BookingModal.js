@@ -31,7 +31,7 @@ const BookingModal = ({ isOpen, closeModal, order, refetch }) => {
       price: order?.resellPrice,
       image: order?.img
     }
-    axios.post(`${process.env.REACT_APP_API_URL}/bookings`, booking, {
+    axios.post(`${process.env.REACT_APP_API_URL}bookings`, booking, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
       }

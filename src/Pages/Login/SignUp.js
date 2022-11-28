@@ -96,7 +96,7 @@ const SignUp = () => {
       role,
     }
 
-    axios.post(`${process.env.REACT_APP_API_URL}/users`, user)
+    axios.post(`${process.env.REACT_APP_API_URL}users`, user)
       .then(res => {
         setCreatedUserEmail(email);
       }).catch(err => {

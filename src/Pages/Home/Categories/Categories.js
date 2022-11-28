@@ -10,7 +10,7 @@ const Categories = () => {
 
   const { data: categories, isLoading } = useQuery({
     queryKey: ['categories'],
-    queryFn: () => axios.get(`${process.env.REACT_APP_API_URL}/categories`)
+    queryFn: () => axios.get(`${process.env.REACT_APP_API_URL}categories`)
       .then(res => {
         const data = res?.data?.data
         return data;

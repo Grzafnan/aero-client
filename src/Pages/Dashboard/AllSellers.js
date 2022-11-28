@@ -19,7 +19,7 @@ const AllSellers = () => {
 
   const { data: allSellers, refetch, isLoading } = useQuery({
     queryKey: ['allSellers'],
-    queryFn: () => axios.get(`${process.env.REACT_APP_API_URL}/all-sellers`, {
+    queryFn: () => axios.get(`${process.env.REACT_APP_API_URL}all-sellers`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
       }
@@ -39,7 +39,7 @@ const AllSellers = () => {
   const handelVerifySeller = (id, email) => {
     console.log(id, email);
 
-    fetch(`${process.env.REACT_APP_API_URL}/sellers/admin/${id}?email=${email}`, {
+    fetch(`${process.env.REACT_APP_API_URL}sellers/admin/${id}?email=${email}`, {
       method: 'PUT',
       headers: {
         authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
@@ -84,7 +84,7 @@ const AllSellers = () => {
       if (result.isConfirmed) {
 
         if (isAdmin) {
-          axios.delete(`${process.env.REACT_APP_API_URL}/users/admin/${id}?email=${user?.email}`, {
+          axios.delete(`${process.env.REACT_APP_API_URL}users/admin/${id}?email=${user?.email}`, {
             headers: {
               authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
             }

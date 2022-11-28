@@ -14,7 +14,7 @@ const AllReports = () => {
 
   const { data: allReports, refetch, isLoading } = useQuery({
     queryKey: ['allReports', user?.email],
-    queryFn: () => axios.get(`${process.env.REACT_APP_API_URL}/all-reports/admin?email=${user?.email}`, {
+    queryFn: () => axios.get(`${process.env.REACT_APP_API_URL}all-reports/admin?email=${user?.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
       }
@@ -51,7 +51,7 @@ const AllReports = () => {
       if (result.isConfirmed) {
 
         if (isAdmin) {
-          axios.delete(`${process.env.REACT_APP_API_URL}/reports/admin/${id}?serviceId=${serviceId}&email=${user?.email}`, {
+          axios.delete(`${process.env.REACT_APP_API_URL}reports/admin/${id}?serviceId=${serviceId}&email=${user?.email}`, {
             headers: {
               authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
             }

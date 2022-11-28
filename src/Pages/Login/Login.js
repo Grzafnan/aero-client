@@ -80,7 +80,7 @@ const Login = () => {
       role,
     }
     console.log(user);
-    axios.post(`${process.env.REACT_APP_API_URL}/users`, user)
+    axios.post(`${process.env.REACT_APP_API_URL}users`, user)
       .then(res => {
         console.log(res.data);
         setLoginUserEmail(email);

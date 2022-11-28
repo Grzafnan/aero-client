@@ -18,7 +18,7 @@ const Payment = () => {
 
   const { data: booking, isLoading } = useQuery({
     queryKey: ['booking', id],
-    queryFn: () => axios.get(`${process.env.REACT_APP_API_URL}/bookings/${id}`)
+    queryFn: () => axios.get(`${process.env.REACT_APP_API_URL}bookings/${id}`)
       .then(res => {
         const data = res?.data?.data;
         return data
