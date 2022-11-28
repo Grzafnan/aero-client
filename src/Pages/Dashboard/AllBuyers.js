@@ -9,7 +9,7 @@ import Spinner from '../../Components/Spinner/Spinner';
 
 const AllBuyers = () => {
   const { user } = useContext(AuthContext);
-  const [isAdmin, setIsAdminLoading] = useAdmin(user?.email)
+  const [isAdmin] = useAdmin(user?.email)
   const { data: allBuyers, refetch, isLoading } = useQuery({
     queryKey: ['allBuyers', user?.email],
     queryFn: () => axios.get(`${process.env.REACT_APP_API_URL}/all-buyers/admin?email=${user?.email}`, {

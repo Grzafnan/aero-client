@@ -51,7 +51,6 @@ const CategoryServicesCard = ({ service, setIsOpen, setOrder }) => {
       })
   }
 
-
   return (
     <>
       <div className={`${sold && 'hidden'} w-full overflow-hidden bg-white rounded-lg shadow-lg font-[Poppins]`}>
