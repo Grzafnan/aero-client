@@ -37,8 +37,8 @@ Live site: https://areo-289aa.web.app/
 
 ### Admin Login:
 
-admin-email: admin@gmail.com
-admin-password: Afnan123!
+- admin-email: admin@gmail.com
+- admin-password: Afnan123!
 
 ## Technologies
 
