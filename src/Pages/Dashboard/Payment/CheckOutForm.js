@@ -36,7 +36,6 @@ const CheckOutForm = ({ booking }) => {
         // console.log('34-', res?.data);
         if (res?.data?.success) {
           setStripeClientSecret(res?.data?.clientSecret);
-          // toast.success(`Payment successful for ${treatmentName}`)
           setLoading(false)
         }
       })
@@ -128,7 +127,6 @@ const CheckOutForm = ({ booking }) => {
     }
     setProcessing(false);
   };
-
 
 
   return (
