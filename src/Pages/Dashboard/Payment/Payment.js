@@ -10,7 +10,7 @@ import CheckOutForm from './CheckOutForm';
 const Payment = () => {
 
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
 
   const stripe = loadStripe(process.env.REACT_APP_PB_KEY);
   // console.log(stripeKey);
@@ -25,7 +25,7 @@ const Payment = () => {
       .catch(err => console.log(err))
   })
 
-  console.log(booking);
+  // console.log(booking);
 
   if (isLoading) {
     return <Spinner />
@@ -33,14 +33,17 @@ const Payment = () => {
 
 
   return (
-    <div className='container mx-auto px-6 md:px-6 lg:px-10'>
-      <h1 className='text-2xl font-bold pt-11'>Payment for {booking?.brand} {booking?.name}</h1>
-      <div className='w-96 mt-5 mb-10'>
-        <Elements stripe={stripe}>
-          <CheckOutForm booking={booking} />
-        </Elements>
+    <section className='container flex justify-center px-6 md:px-6 lg:px-10 font-[Poppins] mt-10'>
+      <div>
+        <h1 className='text-2xl text-center font-bold pt-11'>Payment for {booking?.brand} {booking?.name}</h1>
+        <p className='text-xl text-center font-semibold'>Total Price: ${booking?.price}</p>
+        <div className='w-96 mt-5 mb-10 '>
+          <Elements stripe={stripe}>
+            <CheckOutForm booking={booking} />
+          </Elements>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

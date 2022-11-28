@@ -5,7 +5,7 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
 import { format } from 'date-fns'
 
-const BookingModal = ({ isOpen, closeModal, order }) => {
+const BookingModal = ({ isOpen, closeModal, order, refetch }) => {
   const { user } = useContext(AuthContext)
   const [processing, setProcessing] = useState(false);
   // console.log(order);
@@ -41,6 +41,7 @@ const BookingModal = ({ isOpen, closeModal, order }) => {
         if (res?.data?.data?.acknowledged) {
           toast.success(`Successfully booked ${order?.brand} ${order?.name}`)
           setProcessing(false)
+          refetch();
           closeModal();
         }
       })

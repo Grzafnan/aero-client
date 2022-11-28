@@ -29,7 +29,7 @@ const MyProducts = () => {
       .catch(err => console.log(err))
   })
 
-  // console.log('seller products', products);
+  console.log('seller products', products);
 
 
   const handelAdvertise = (id, name) => {
@@ -141,15 +141,29 @@ const MyProducts = () => {
                       <td>${product?.resellPrice}</td>
                       <td>{'Available'}</td>
                       <td>
-                        {product?.advertise ? (
-                          <span className='text-white bg-secondary px-2 py-[2px] text-sm rounded-md font-semibold'>Advertised</span>
-                        ) : (
-                          <button
-                            onClick={() => handelAdvertise(product._id, product?.name)}
-                            className='btn btn-xs btn-success text-sm font-medium'
-                          >  Advertise</button>
-                        )
+                        {
+                          product?.sold ? (
+                            <>
+                              <span
+                                className=' bg-warning px-8 py-[2px] text-sm rounded-md font-semibold'
+                              >Sold</span>
+                            </>
+                          )
+                            : (
+                              <>
+                                {product?.advertise ? (
+                                  <span className='text-white bg-secondary px-2 py-[2px] text-sm rounded-md font-semibold'>Advertised</span>
+                                ) : (
+                                  <button
+                                    onClick={() => handelAdvertise(product._id, product?.name)}
+                                    className='btn btn-xs btn-success text-sm font-medium'
+                                  >  Advertise</button>
+                                )
+                                }
+                              </>
+                            )
                         }
+
                       </td>
                       <td>
                         <button

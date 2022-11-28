@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -7,8 +7,10 @@ import CategoryServicesCard from './CategoryServicesCard';
 import BookingModal from '../../../Components/BookingModal/BookingModal';
 import { useLocation } from 'react-router-dom';
 import useTitle from '../../../hooks/useTitle';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const CategoryServices = () => {
+  const { user } = useContext(AuthContext);
   const { id } = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const [order, setOrder] = useState(null);
@@ -19,9 +21,13 @@ const CategoryServices = () => {
 
   // console.log(order);
 
-  const { data: services, isLoading } = useQuery({
-    queryKey: ['services'],
-    queryFn: () => axios.get(`${process.env.REACT_APP_API_URL}/services/${id}`)
+  const { data: services, refetch, isLoading } = useQuery({
+    queryKey: ['services', user?.email],
+    queryFn: () => axios.get(`${process.env.REACT_APP_API_URL}/services/${id}?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
+      }
+    })
       .then(res => {
         // console.log(res?.data?.data);
         const data = res?.data?.data;
@@ -59,6 +65,7 @@ const CategoryServices = () => {
         closeModal={closeModal}
         isOpen={isOpen}
         order={order}
+        refetch={refetch}
       />
     </section>
   );

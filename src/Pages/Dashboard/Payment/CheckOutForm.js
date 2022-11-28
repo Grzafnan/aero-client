@@ -33,7 +33,7 @@ const CheckOutForm = ({ booking }) => {
       }
     })
       .then(res => {
-        console.log('34-', res?.data);
+        // console.log('34-', res?.data);
         if (res?.data?.success) {
           setStripeClientSecret(res?.data?.clientSecret);
           // toast.success(`Payment successful for ${treatmentName}`)
@@ -120,7 +120,7 @@ const CheckOutForm = ({ booking }) => {
             toast.success(`${brand} ${name} Payment successful ${paymentIntent?.id}`)
             setSuccess('Congrats! your payment completed.')
             setTransactionId(paymentIntent?.id);
-            navigate('/dashboard/my-orders')
+            // navigate('/dashboard/my-orders')
           }
         })
         .catch(err => console.log(err))
@@ -134,7 +134,8 @@ const CheckOutForm = ({ booking }) => {
   return (
     <>
       <form
-        onSubmit={handleSubmit}>
+        onSubmit={handleSubmit}
+      >
         <CardElement
           options={{
             style: {
@@ -150,6 +151,7 @@ const CheckOutForm = ({ booking }) => {
               },
             },
           }}
+          className='border border-primary p-2'
         />
         <p className='text-red-600'>{error}</p>
         <button
