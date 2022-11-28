@@ -9,7 +9,7 @@ import useTitle from '../../hooks/useTitle';
 const MyOrders = () => {
 
   const { user } = useContext(AuthContext)
-  // console.log(user);
+  console.log(user);
 
   const { data: bookings, isLoading } = useQuery({
     queryKey: ['bookings', user?.uid, user?.email],
@@ -53,7 +53,7 @@ const MyOrders = () => {
                     </thead>
                     <tbody>
                       {
-                        bookings?.length && (
+                        bookings?.length ? (
                           <>
                             {
                               bookings?.map((booking, idx) => (
@@ -93,6 +93,13 @@ const MyOrders = () => {
                             }
                           </>
                         )
+                          :
+                          (
+                            <>
+                              <td className='text-xl font-semibold text-error'> No Orders Found
+                              </td>
+                            </>
+                          )
                       }
                     </tbody>
                   </table>

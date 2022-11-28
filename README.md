@@ -42,7 +42,7 @@ Live site: https://areo-289aa.web.app/
 
 ## Technologies
 
-- React
+- React Js
 - Firebase
 - MongoDB
 - Express Js

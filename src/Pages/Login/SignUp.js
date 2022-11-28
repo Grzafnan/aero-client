@@ -13,7 +13,9 @@ const SignUp = () => {
   const googleProvider = new GoogleAuthProvider();
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const [createdUserEmail, setCreatedUserEmail] = useState('');
+  const [files, setFiles] = useState([]);
   const [token] = useToken(createdUserEmail)
+
 
   useTitle('Sign Up')
 
@@ -27,33 +29,66 @@ const SignUp = () => {
 
 
   const handleRegister = (data) => {
-    console.log(data);
+    const formData = new FormData();
+    formData.append('image', data?.photo[0])
+    axios.post(`https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_IMGBB_KEY}`, formData)
+      .then(res => {
+        if (res?.data?.data?.image?.url) {
+          createUser(data.email, data.password)
+            .then((userCredential) => {
+              // Signed in 
+              const user = userCredential.user;
+              console.log(user);
+              savedUserDB(data.name, data.email, data.userType)
+              update(data.name, res?.data?.data?.image?.url)
+              verifyEmail();
+              // ...
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              console.log(error);
+              toast.error(error.message);
+              // ..
+            })
+            .finally(() => {
+              setLoading(false)
+            })
 
-    createUser(data.email, data.password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        console.log(user);
-        savedUserDB(data.name, data.email, data.userType)
-        update(data.name)
-        verifyEmail();
-        // ...
+
+        }
       })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(error);
-        toast.error(error.message);
-        // ..
+      .catch(err => {
+        console.error(err)
       })
-      .finally(() => {
-        setLoading(false)
-      })
+
+
+
+    // createUser(data.email, data.password)
+    //   .then((userCredential) => {
+    //     // Signed in 
+    //     const user = userCredential.user;
+    //     console.log(user);
+    //     savedUserDB(data.name, data.email, data.userType)
+    //     update(data.name)
+    //     verifyEmail();
+    //     // ...
+    //   })
+    //   .catch((error) => {
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     console.log(error);
+    //     toast.error(error.message);
+    //     // ..
+    //   })
+    //   .finally(() => {
+    //     setLoading(false)
+    //   })
   }
 
 
-  const update = (name) => {
-    updateUserProfile(name)
+  const update = (name, photo) => {
+    updateUserProfile(name, photo)
       .then(() => {
         // Profile updated!
         // ...
@@ -169,7 +204,31 @@ const SignUp = () => {
           </div>
 
 
+          <div className="mt-4">
+            <div className="flex items-center justify-between">
+              <label
+                htmlFor="photo"
+                className="block text-sm text-gray-800  ">
+                Photo
+              </label>
+            </div>
 
+            <input
+              type="file"
+              name="photo"
+              placeholder="Input your Photo"
+              required
+              className="block px-4 py-1.5 mt-2 border-[1px] border-accent pl-3 rounded-[10px] w-full"
+              {...register('photo', {
+                required: 'Photo is Required',
+              })}
+            />
+            {errors.photo && (
+              <p className="text-red-500">
+                {errors.photo.message}
+              </p>
+            )}
+          </div>
 
           <input className='w-full btn text-white btn-secondary mt-8' type="submit" value='Sign up' />
         </form>

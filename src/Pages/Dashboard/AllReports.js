@@ -106,7 +106,7 @@ const AllReports = () => {
           </thead>
           <tbody>
             {
-              allReports?.length && (
+              allReports?.length ? (
                 <>
                   {
                     allReports?.map((report, idx) => (
@@ -126,6 +126,13 @@ const AllReports = () => {
                   }
                 </>
               )
+                :
+                (
+                  <>
+                    <td className='text-xl font-semibold text-error'> No Reports Found
+                    </td>
+                  </>
+                )
             }
           </tbody>
         </table>

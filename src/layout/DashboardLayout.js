@@ -39,7 +39,7 @@ const DashboardLayout = () => {
                 <div className='mt-5'>
                   <img src={logo} className='w-28 mx-auto' alt="" />
                   <div className="flex flex-col items-center mt-4">
-                    <img className="object-cover w-24 h-24 mx-2 rounded-full" src={user?.photoURL ? user?.photoUrl : 'https://www.shareicon.net/data/512x512/2016/08/18/814068_face_512x512.png'} alt={user?.displayName} />
+                    <img className="object-cover w-24 h-24 mx-2 rounded-full" src={user?.photoURL ? user?.photoURL : 'https://www.shareicon.net/data/512x512/2016/08/18/814068_face_512x512.png'} alt={user?.displayName} />
                     <h4 className="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200 hover:underline">{user?.displayName ? user?.displayName : "No User"}</h4>
                     <p className="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400 hover:underline">{user?.email ? user?.email : 'john@example.com'}</p>
                   </div>

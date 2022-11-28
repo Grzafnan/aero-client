@@ -140,7 +140,7 @@ const AllSellers = () => {
                   </thead>
                   <tbody>
                     {
-                      allSellers?.length && (
+                      allSellers?.length ? (
                         <>
                           {
                             allSellers?.map((seller, idx) => <TableRow
@@ -153,6 +153,13 @@ const AllSellers = () => {
                           }
                         </>
                       )
+                        :
+                        (
+                          <>
+                            <td className='text-xl font-semibold text-error'> No Sellers Found
+                            </td>
+                          </>
+                        )
                     }
                   </tbody>
                 </table>
