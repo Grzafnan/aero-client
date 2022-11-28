@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import Spinner from '../../Components/Spinner/Spinner';
+import useTitle from '../../hooks/useTitle';
 
 const MyOrders = () => {
 
@@ -23,6 +24,8 @@ const MyOrders = () => {
         return data;
       })
   })
+
+  useTitle('My Orders')
 
   return (
     <>

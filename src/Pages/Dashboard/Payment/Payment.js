@@ -6,6 +6,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { useParams } from 'react-router-dom';
 import Spinner from '../../../Components/Spinner/Spinner';
 import CheckOutForm from './CheckOutForm';
+import useTitle from '../../../hooks/useTitle';
 
 const Payment = () => {
 
@@ -27,9 +28,12 @@ const Payment = () => {
 
   // console.log(booking);
 
+  useTitle(`Payment ${booking?.brand} ${booking?.name}`)
+
   if (isLoading) {
     return <Spinner />
   }
+
 
 
   return (

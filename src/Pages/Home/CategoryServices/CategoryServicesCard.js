@@ -1,17 +1,56 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import axios from 'axios';
 import { FcCalendar } from "react-icons/fc";
-import { GrLocation } from "react-icons/gr";
+import { GrLocation, GrToast } from "react-icons/gr";
 import { MdOutlinePriceChange, MdOutlinePriceCheck } from "react-icons/md";
 import { FaCheckCircle, FaRegClock, FaRegUserCircle, FaCarCrash } from "react-icons/fa";
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import toast from 'react-hot-toast';
 
 const CategoryServicesCard = ({ service, setIsOpen, setOrder }) => {
+  const { user } = useContext(AuthContext);
+  // console.log(user);
+  const { _id, brand, img, location, name, originalPrice, postDate, resellPrice, sellerName, verified, usesTime, condition, description, isBooked, sold, sellerEmail } = service;
+  // console.log(service);
 
-  const { brand, img, location, name, originalPrice, postDate, resellPrice, sellerName, verified, usesTime, condition, description, isBooked, sold } = service;
-  console.log(service);
+
   const handelSetOrder = (service) => {
     setOrder(service);
     setIsOpen(true);
   }
+
+  const handelReport = (id) => {
+    console.log(id);
+
+    const report = {
+      userEmail: user?.email,
+      userName: user?.displayName,
+      serviceId: _id,
+      serviceBrand: brand,
+      serviceName: name,
+      sellerName: sellerName,
+      sellerEmail: sellerEmail,
+    }
+
+    axios.post(`${process.env.REACT_APP_API_URL}/reports/${id}?email=${user?.email}`, report, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('Aero-Token')}`
+      }
+    })
+      .then(res => {
+        // console.log(res?.data?.data?.acknowledged);
+        if (res?.data?.data?.acknowledged) {
+          toast.success(`Report to admin for ${brand} ${name}`)
+        } else {
+          // console.log(res?.data?.message);
+          toast.error(res?.data?.message)
+        }
+      })
+      .catch(err => {
+        console.error(err);
+      })
+  }
+
 
   return (
     <>
@@ -20,10 +59,16 @@ const CategoryServicesCard = ({ service, setIsOpen, setOrder }) => {
         <div className="px-6 py-4">
 
           <div className='flex items-center justify-between'>
-            <h1 className="text-xl font-semibold text-gray-800 dark:text-white"> {name} </h1>
-            <div className="badge badge-outline badge-primary font-medium text-gray-900">{brand}</div>
+            <div className=''>
+              <div className="badge badge-outline badge-primary font-medium text-gray-900">{brand}
+              </div>
+              <h1 className="text-xl font-semibold text-gray-800 dark:text-white"> {name} </h1>
+            </div>
+            <div
+              onClick={() => handelReport(_id)}
+              className="badge badge-error hover:bg-rose-700 text-white font-medium cursor-pointer transition-all ease-linear duration-300">Report
+            </div>
           </div>
-
           <p className="py-2 text-[15px]">
             {description?.length > 120 ? description?.slice(0, 120) + '...' : description}
           </p>
