@@ -53,7 +53,7 @@ const CategoryServicesCard = ({ service, setIsOpen, setOrder }) => {
 
   return (
     <>
-      <div className={`${sold && 'hidden'} w-full overflow-hidden bg-white rounded-lg shadow-lg font-[Poppins]`}>
+      <div data-aos="fade-up" className={`${sold && 'hidden'} w-full overflow-hidden bg-white rounded-lg shadow-lg font-[Poppins]`}>
         <img className="object-cover object-center w-full h-56" src={img} alt={name} />
         <div className="px-6 py-4">
 

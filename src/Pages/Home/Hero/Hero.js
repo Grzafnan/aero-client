@@ -4,7 +4,7 @@ const Hero = () => {
   return (
     <div className=" -mt-28 lg:-mt-40 font-[Poppins] text-gray-900">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto px-4 pt-32">
-        <div className="flex justify-center items-center gap-6 call_to_action">
+        <div data-aos="zoom-out-right" className="flex justify-center items-center gap-6 call_to_action">
           <div>
             <img
               src="https://htmldemo.net/lukas/lukas/assets/img/icons/icon-1.png"
@@ -18,7 +18,7 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="flex justify-center items-center gap-6 call_to_action">
+        <div data-aos="zoom-in-down" className="flex justify-center items-center gap-6 call_to_action">
           <div>
             <img
               src="https://htmldemo.net/lukas/lukas/assets/img/icons/icon-2.png"
@@ -32,7 +32,7 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="flex justify-center items-center gap-6">
+        <div data-aos="zoom-out-left" className="flex justify-center items-center gap-6">
           <div>
             <img
               src="https://htmldemo.net/lukas/lukas/assets/img/icons/icon-3.png"

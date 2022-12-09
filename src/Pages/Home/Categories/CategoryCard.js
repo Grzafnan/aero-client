@@ -16,7 +16,7 @@ const CategoryCard = ({ category }) => {
 
   return (
     <>
-      <div className="card bg-base-100 shadow font-[Poppins]">
+      <div data-aos="zoom-in" className="card bg-base-100 shadow font-[Poppins]">
         <figure>
           <img src={img} className='h-60 w-full' alt={title} />
         </figure>
