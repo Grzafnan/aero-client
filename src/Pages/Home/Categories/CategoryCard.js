@@ -30,18 +30,11 @@ const CategoryCard = ({ category }) => {
             }
           </p>
           <div className="card-actions justify-center mt-1 w-full">
-            {/* <Link
-              to={`/category/${categories_id}`}
-              className="w-full"
-            > */}
             <button
               onClick={() => handelNavigate(current => handelNavigate({ ...current, data: title }))}
               className="h-10 text-white rounded-lg w-full btn-primary">
               SEE MORE
             </button>
-
-            {/* <PrimaryButton>SEE MORE</PrimaryButton> */}
-            {/* </Link> */}
           </div>
         </div>
       </div >
