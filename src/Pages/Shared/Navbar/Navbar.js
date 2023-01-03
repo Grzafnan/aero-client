@@ -50,7 +50,7 @@ const Navbar = () => {
   </>
 
   return (
-    <div className="navbar sticky top-0 z-40 bg-slate-50/60 backdrop-blur-2xl transition-colors duration-500 dark:bg-[#0B1120]/80 flex justify-between font-[Poppins]">
+    <div className="navbar sticky top-0 z-40 bg-slate-50/60 backdrop-blur-2xl transition-colors duration-500 flex justify-between font-[Poppins]">
       <div className="navbar-start ">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
